@@ -1,4 +1,4 @@
-package com.teradata.resumeprocessing.model;
+package com.mywork.resumeprocessing.model;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Id;

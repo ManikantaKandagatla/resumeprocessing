@@ -2,7 +2,7 @@
  * @author mk186084
  *
  */
-package com.teradata.resumeprocessing.controller;
+package com.mywork.resumeprocessing.controller;
 
 import org.codehaus.jackson.map.ObjectMapper;
 import org.codehaus.jackson.map.DeserializationConfig;
@@ -18,9 +18,9 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
-import com.teradata.resumeprocessing.model.CompleteEmployee;
-import com.teradata.resumeprocessing.model.EmpResume;
-import com.teradata.resumeprocessing.service.EmployeeService;
+import com.mywork.resumeprocessing.model.CompleteEmployee;
+import com.mywork.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.service.EmployeeService;
 import java.io.IOException;
 import java.util.List;
 
@@ -28,7 +28,7 @@ import javax.servlet.http.HttpServletResponse;
 
 @RestController
 @Configuration
-@ComponentScan("com.teradata.resumeprocessing.service")
+@ComponentScan("com.mywork.resumeprocessing.service")
 public class EmployeeController {
 	
 	

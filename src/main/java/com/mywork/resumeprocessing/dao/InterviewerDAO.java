@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.teradata.resumeprocessing.dao;
+package com.mywork.resumeprocessing.dao;
 
 import java.util.List;
 
@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.teradata.resumeprocessing.model.Interviewer;
-import com.teradata.resumeprocessing.util.InterviewerHibernateUtil;
+import com.mywork.resumeprocessing.model.Interviewer;
+import com.mywork.resumeprocessing.util.InterviewerHibernateUtil;
 
 /**
  * @author ManiKanta Kandagatla

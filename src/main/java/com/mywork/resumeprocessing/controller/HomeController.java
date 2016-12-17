@@ -1,4 +1,4 @@
-package com.teradata.resumeprocessing.controller;
+package com.mywork.resumeprocessing.controller;
 
 import java.text.DateFormat;
 import java.util.Date;

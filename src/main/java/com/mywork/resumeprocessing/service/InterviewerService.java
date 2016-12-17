@@ -1,15 +1,15 @@
 /**
  * 
  */
-package com.teradata.resumeprocessing.service;
+package com.mywork.resumeprocessing.service;
 
 import javax.transaction.Transactional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.teradata.resumeprocessing.dao.InterviewerDAO;
-import com.teradata.resumeprocessing.model.Interviewer;;
+import com.mywork.resumeprocessing.dao.InterviewerDAO;
+import com.mywork.resumeprocessing.model.Interviewer;;
 
 /**
  * @author ManiKanta Kandagatla

@@ -1,4 +1,4 @@
-package com.teradata.resumeprocessing.dao;
+package com.mywork.resumeprocessing.dao;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -7,11 +7,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.teradata.resumeprocessing.model.CompleteEmployee;
-import com.teradata.resumeprocessing.model.EmpProfile;
-import com.teradata.resumeprocessing.model.EmpProjects;
-import com.teradata.resumeprocessing.model.EmpResume;
-import com.teradata.resumeprocessing.util.HibernateUtil;
+import com.mywork.resumeprocessing.model.CompleteEmployee;
+import com.mywork.resumeprocessing.model.EmpProfile;
+import com.mywork.resumeprocessing.model.EmpProjects;
+import com.mywork.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.util.HibernateUtil;
 
 
 @Repository

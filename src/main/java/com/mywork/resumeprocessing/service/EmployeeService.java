@@ -1,4 +1,4 @@
-package com.teradata.resumeprocessing.service;
+package com.mywork.resumeprocessing.service;
 
 import java.util.List;
 
@@ -6,9 +6,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.teradata.resumeprocessing.dao.EmpDAO;
-import com.teradata.resumeprocessing.model.CompleteEmployee;
-import com.teradata.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.dao.EmpDAO;
+import com.mywork.resumeprocessing.model.CompleteEmployee;
+import com.mywork.resumeprocessing.model.EmpResume;
 
 
 
