@@ -1,7 +1,7 @@
 /**
  * 
  */
-package com.teradata.resumeprocessing.model;
+package com.mywork.resumeprocessing.model;
 
 import java.util.List;
 

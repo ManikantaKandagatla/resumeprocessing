@@ -1,4 +1,4 @@
-package com.teradata.resumeprocessing.model;
+package com.mywork.resumeprocessing.model;
 /**
  * @author mk186084
  *

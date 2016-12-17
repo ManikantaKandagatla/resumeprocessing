@@ -1,14 +1,14 @@
 /**
  * 
  */
-package com.teradata.resumeprocessing.util;
+package com.mywork.resumeprocessing.util;
 
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
-import com.teradata.resumeprocessing.model.Interviewer;;
+import com.mywork.resumeprocessing.model.Interviewer;;
 
 /**
  * @author ManiKanta Kandagatla

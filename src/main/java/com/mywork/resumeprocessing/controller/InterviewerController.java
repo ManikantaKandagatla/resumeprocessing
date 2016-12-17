@@ -1,13 +1,13 @@
 /**
  * 
  */
-package com.teradata.resumeprocessing.controller;
+package com.mywork.resumeprocessing.controller;
 
 import java.io.IOException;
 
-import com.teradata.resumeprocessing.model.Interviewer;
-import com.teradata.resumeprocessing.service.EmployeeService;
-import com.teradata.resumeprocessing.service.InterviewerService;
+import com.mywork.resumeprocessing.model.Interviewer;
+import com.mywork.resumeprocessing.service.EmployeeService;
+import com.mywork.resumeprocessing.service.InterviewerService;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
@@ -25,7 +25,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 @RestController
 @Configuration
-@ComponentScan("com.teradata.resumeprocessing.service")
+@ComponentScan("com.mywork.resumeprocessing.service")
 public class InterviewerController {
 
 	/**
