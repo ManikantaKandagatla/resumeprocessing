@@ -6,7 +6,7 @@ package com.mywork.resumeprocessing.model;
 import java.util.List;
 
 /**
- * @author mk186084
+ * @author ManiKanta Kandagatla
  *
  */
 public class CompleteEmployee {

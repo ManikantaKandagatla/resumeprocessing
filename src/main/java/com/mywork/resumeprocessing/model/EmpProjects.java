@@ -11,7 +11,7 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 /**
- * @author mk186084
+ * @author ManiKanta Kandagatla
  *
  */
 @Entity
