@@ -1,5 +1,5 @@
 /**
- * 
+ * @author ManiKanta Kandagatla
  */
 package com.mywork.resumeprocessing.util;
 
@@ -10,10 +10,6 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import com.mywork.resumeprocessing.model.Interviewer;;
 
-/**
- * @author ManiKanta Kandagatla
- *
- */
 @Repository
 @Transactional
 public class InterviewerHibernateUtil {

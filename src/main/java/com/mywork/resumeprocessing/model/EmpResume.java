@@ -1,6 +1,6 @@
 package com.mywork.resumeprocessing.model;
 /**
- * @author mk186084
+ * @author ManiKanta Kandagatla
  *
  */
 
