@@ -92,6 +92,7 @@ public class EmployeeController {
 	@RequestMapping(value= "/searchBySkillset/{skill}", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")	
 	public @ResponseBody List<CompleteEmployee> searchEmployeeBySkillset(@PathVariable String skill)
 	{
+		skill = skill.replace('*', '%');
 		return employeeService.searchEmployeeBySkillset(skill);
 	}
 	
