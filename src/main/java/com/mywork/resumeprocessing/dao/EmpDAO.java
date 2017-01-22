@@ -21,8 +21,8 @@ public class EmpDAO  {
 	 @Autowired
 	 private HibernateUtil hibernateUtil;
 	 
-	public void createEmployee(EmpProfile employee,List<EmpProjects> projs) {
-		 hibernateUtil.create(employee,projs);
+	public boolean createEmployee(EmpProfile employee,List<EmpProjects> projs,EmpResume resumeobj) {
+		 return hibernateUtil.create(employee,projs,resumeobj);
 	}
 	 
 	public List<CompleteEmployee> getAllemp()
@@ -31,10 +31,10 @@ public class EmpDAO  {
 		return returnEmployees(profiles);
 	}
 
-	public void storeResume(EmpResume resume)
+	/*public void storeResume(EmpResume resume)
 	{
 		hibernateUtil.storeResume(resume);
-	}
+	}*/
 	
 	
 	public void deleteEmployeeByid(String id)

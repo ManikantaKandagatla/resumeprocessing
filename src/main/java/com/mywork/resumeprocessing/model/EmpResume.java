@@ -4,45 +4,47 @@ package com.mywork.resumeprocessing.model;
  *
  */
 
+import java.io.Serializable;
+
+import javax.persistence.Basic;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.Lob;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
+
 
 @Entity
 @Table(name = "EmpResume")
-public class EmpResume {
+public class EmpResume implements Serializable {
 	
-	
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -2287588917743318363L;
 
 	@Id
-	@Column
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	private int Id;
+	@OneToOne
+    @JoinColumn(name="contact")
+	private EmpProfile empprofile;
 	
 	@Column
-	private String contact;
-	
-	@Column
+	@Lob @Basic(fetch = FetchType.LAZY)
 	private byte[] empresume;
-	
-	public int getId() {
-		return Id;
+
+	public EmpProfile getEmpprofile() {
+		return empprofile;
 	}
 
-	public void setId(int id) {
-		Id = id;
+	public void setEmpprofile(EmpProfile empprofile) {
+		this.empprofile = empprofile;
 	}
 
-	public String getContact() {
-		return contact;
-	}
-
-	public void setContact(String contact) {
-		this.contact = contact;
-	}
 	public byte[] getEmpresume() {
 		return empresume;
 	}
@@ -51,5 +53,8 @@ public class EmpResume {
 		this.empresume = empresume;
 	}
 
+	public EmpResume()
+	{
 
+	}
 }

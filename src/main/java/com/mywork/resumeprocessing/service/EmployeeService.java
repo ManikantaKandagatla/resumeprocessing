@@ -13,37 +13,44 @@ import com.mywork.resumeprocessing.dao.EmpDAO;
 import com.mywork.resumeprocessing.model.CompleteEmployee;
 import com.mywork.resumeprocessing.model.EmpResume;
 
-
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 
 @Service
 @Transactional
 public class EmployeeService {
 
+	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
 	@Autowired
 	private EmpDAO empDAO;
 	// private RestTemplate restTemplate = null;
 	
-	public void createEmployee(CompleteEmployee employee)
+	public boolean createEmployee(CompleteEmployee employee,EmpResume resumeobj)
 	{
-		empDAO.createEmployee(employee.getEmp(),employee.getProjects());
+		log.info("Adding Employee..!!");
+		return empDAO.createEmployee(employee.getEmp(),employee.getProjects(),resumeobj);
 	}
 	
 	public List<CompleteEmployee> getAllEmps()
 	{
+		log.info("Retrieving Employees..!!");
 		return empDAO.getAllemp();
 	}
 	
 	
 	
 	public void deleteEmployeeByid(String id) {
+		log.info("Deleting Employee with id: "+id+"..!!");
         empDAO.deleteEmployeeByid(id);
     }
  
 	public List<CompleteEmployee> searchEmployeeByName(String firstname) {
+		log.info("Search Employee..!!");
         return empDAO.searchEmployeeByName(firstname);
     }
 	public List<CompleteEmployee> searchEmployeeByContact(String contact) {
-       return  empDAO.searchEmployeeByContact(contact);
+		log.info("Search Employee..!!");
+		return  empDAO.searchEmployeeByContact(contact);
     }
 	public List<CompleteEmployee> searchEmployeeBySkillset(String skillset) {
         return empDAO.searchEmployeeBySkillset(skillset);
@@ -57,9 +64,9 @@ public class EmployeeService {
 		return empDAO.getEmployeeResume(id);
 	}
 	
-	public void storeResume(EmpResume resumeobj) {
-		empDAO.storeResume(resumeobj);
-	}
+	/*public void storeResume(EmpResume resume) {
+		empDAO.storeResume(resume);
+	}*/
 	
 	
 }

@@ -4,6 +4,7 @@ var projectcount = 0;
 
 empappobj.controller("mainController",function($http,$scope,EmpshowService,$location,$sce){
 	
+	
 	$scope.initEmp = function()
 	{
 		$scope.skillset=[];
@@ -15,6 +16,15 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 		$scope.empProjs = [];
 		$scope.empProj = {};
 	};
+	
+	$scope.skillset=[];
+	$scope.empobj = {};
+	$scope.Allemps = [];
+	$scope.newprojects = [];
+	$scope.neweditprojects =[];
+	$scope.employee={};
+	$scope.empProjs = [];
+	$scope.empProj = {};
 	
 	$scope.projectscount = 0;
 	$scope.baseUrl = '/resumeprocessing';
@@ -30,7 +40,7 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 	$scope.Viewall = false;
 	$scope.ViewSelected = false;
 	$scope.param ='';
-	$scope.searchCriteria='searchByName';
+	$scope.searchCriteria='search By Name';
 	
 	$scope.techSkills={
 		"Languages":["C","C++","JAVA","Python","C#","Perl"],
@@ -87,7 +97,7 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 		$scope.showsearchdiv = false;
 		$scope.ViewSelected = false;
 		$scope.editDiv=false;
-		$http.post($scope.baseUrl+'/retrieveAllEmps')
+		$http.get($scope.baseUrl+'/retrieveAllEmps')
 		.then(
 				function(response) 
 				{
@@ -198,7 +208,7 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 		if(angular.equals($scope.searchCriteria, "searchBySkillset"))
 			$scope.param = $scope.param.split(' ').join('%');
 		console.log($scope.param);
-		$http.post($scope.baseUrl+'/'+$scope.searchCriteria,$scope.param)
+		$http.get($scope.baseUrl+'/'+$scope.searchCriteria+'/'+$scope.param)
 		.then(
 				function(response) 
 				{
@@ -268,7 +278,7 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 });
 
 
-empappobj.controller("displayController" ,function($http,$scope,$routeParams,EmpshowService){
+empappobj.controller("displayController" ,function($http,$scope,EmpshowService){
 	
 	$scope.employee = {};
 	$scope.getEmpdata = function(){
@@ -306,13 +316,13 @@ empappobj.factory('EmpshowService', function() {
 
 
 
-empappobj.config(function($routeProvider) {  
+/*empappobj.config(function($routeProvider) {  
     $routeProvider  
     .when('/showEmp', {  
         templateUrl: 'Employee.jsp',  
         controller: 'displayController'  
     })   
-});  
+});  */
 
 
 
@@ -331,7 +341,7 @@ empappobj.directive("adddivs", function($compile){
 		element.bind("click", function(){
 			projectcount++;
 			console.log("projectcount "+projectcount)
-			angular.element(document.getElementById('projects-div')).append($compile("<div class='callout panel'><table width='100%'><tr><td><pre>project Title</pre></td><td><input type='textbox' ng-model = 'newprojects["+(projectcount-1)+"].projecttitle'></td></tr><tr><td><pre>Project Duration</pre></td><td><input type='textfield' ng-model = 'newprojects["+(projectcount-1)+"].projectduration'></td></tr><tr><td><pre>Project description</pre></td><td><textarea  rows='3' columns='50' wrap='hard' ng-model = 'newprojects["+(projectcount-1)+"].projectdescription'></textarea></td></tr><tr><td><pre>Role in Project</pre></td><td><textarea  rows='2' columns='50' wrap='hard' ng-model = 'newprojects["+(projectcount-1)+"].projectrole'></textarea></td></tr></table></div>")(scope));
+			angular.element(document.getElementById('projects-div')).append($compile("<div class='callout panel'><table width='100%'><tr><td><pre>project Title</pre></td><td><input type='textbox' ng-model = 'newprojects["+(projectcount-1)+"].projecttitle' ng-required='true'></td></tr><tr><td><pre>Project Duration</pre></td><td><input type='textfield' ng-model = 'newprojects["+(projectcount-1)+"].projectduration' ng-required='true'></td></tr><tr><td><pre>Project description</pre></td><td><textarea  rows='3' columns='50' wrap='hard' ng-model = 'newprojects["+(projectcount-1)+"].projectdescription' ng-required='true'></textarea></td></tr><tr><td><pre>Role in Project</pre></td><td><textarea  rows='2' columns='50' wrap='hard' ng-model = 'newprojects["+(projectcount-1)+"].projectrole' ng-required='true'></textarea></td></tr></table></div>")(scope));
 			
 		});
 	};
