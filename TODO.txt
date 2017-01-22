@@ -1,0 +1,9 @@
+#1 Add logger to all Class files
+#2 Improve Angular code and add acknowledge messages to client on every client-side events
+#3 Add Mail service for acknowledging of all/necessary actions happen in application
+#4 Edit API for applicant and interviewer classes
+#5 Design schema for Scheduling, monitoring interviews 
+#6 Add visualization of ongoing interivews at 
+	#6.1 Applicant level
+	#6.2 Admin level
+	
