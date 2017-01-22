@@ -45,7 +45,6 @@ public class EmpProfile implements Serializable {
 	@Column
 	private String qualification;
 	
-	
 
 
 	public String getFirstname() {

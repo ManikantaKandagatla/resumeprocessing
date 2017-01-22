@@ -7,8 +7,11 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.css">
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
-	<script src="/empapp/resources/js/angular.min.js"></script>
-	<script src="/empapp/resources/js/angular-route.js"></script>
+	
+	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular.js"></script>-->
+	
+	<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular-route.js"></script>-->
+	<script src="/resumeprocessing/resources/js/angular.min.js"></script> 	
 	 
     <script src="/resumeprocessing/resources/js/empcontroller.js"></script>
     
@@ -18,7 +21,7 @@
 <div class="large-12 columns">
 <center><h3>Employee Interview App</h3></center>
 </div>
-<div class="large-12 columns" ng-controller="mainController as ctrl">
+<div class="large-12 columns" ng-controller="mainController as ctrl" ng-init="initEmp()">
   <div class="medium-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
       <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">New Details</a></li>
@@ -59,10 +62,10 @@
 										<div id="projects-div">
 											<div class="callout panel">
 												<table width="100%">	
-														 <tr><td><pre>project Title</pre></td><td><input type="textbox" ng-model = "empProjs[0].projecttitle"></td></tr>
-														 <tr><td><pre>Project Duration</pre></td><td><input type="textfield" ng-model = "empProjs[0].projectduration"></td></tr>
-														 <tr><td><pre>Project description</pre></td><td><textarea  rows="3" columns="50" wrap="hard" ng-model = "empProjs[0].projectdescription"></textarea></td></tr>
-														  <tr><td><pre>Role in Project</pre></td><td><textarea  rows="2" columns="50" wrap="hard" ng-model = "empProjs[0].projectrole"></textarea></td></tr>
+														 <tr><td><pre>project Title</pre></td><td><input type="textbox" ng-model = "empProjs[0].projecttitle" ng-required="true"></td></tr>
+														 <tr><td><pre>Project Duration</pre></td><td><input type="textfield" ng-model = "empProjs[0].projectduration" ng-required="true"></td></tr>
+														 <tr><td><pre>Project description</pre></td><td><textarea  rows="3" columns="50" wrap="hard" ng-model = "empProjs[0].projectdescription" ng-required="true"></textarea></td></tr>
+														  <tr><td><pre>Role in Project</pre></td><td><textarea  rows="2" columns="50" wrap="hard" ng-model = "empProjs[0].projectrole" ng-required="true"></textarea></td></tr>
 												</table>
 												
 												</div>
@@ -80,7 +83,7 @@
 													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox"  ng-click="toggleSelection(technology)"/>{{technology}}</pre></div>
 													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os)"/>{{os}}</pre></div>
 												</fieldset>
-												 <input type="file" id="resume" name="resume"/>
+												 <input type="file" id="resume" name="resume" ng-required = "true"/>
 												<button class="button" ng-click="empform.$valid && addEmp(empobj,empProjs,newprojects)">Submit</button>
 											</div>	
 									</fieldset>	
@@ -213,12 +216,12 @@
 											<div class="callout panel">
 												<fieldset>
 													
-													<div class = "small-3 columns"><h5>Languages</h5><pre ng-repeat="language in techSkills.Languages"><input type="checkbox"  ng-click="toggleSelection(language)" ng-checked="isAskill(language)"/>{{language}}</pre></div>
+													<div class = "small-3 columns"><h5>Languages</h5><pre ng-repeat="language in techSkills.Languages"><input type="checkbox"  ng-click="toggleSelection(language,skillset)" ng-checked="isAskill(language)"/>{{language}}</pre></div>
 													
-													<div class = "small-3 columns"><h5>Source control Tools</h5><pre ng-repeat="tool in techSkills.SouceControlTools"><input type="checkbox" ng-click="toggleSelection(tool)" ng-checked="isAskill(tool)"/>{{tool}}</pre></div>
+													<div class = "small-3 columns"><h5>Source control Tools</h5><pre ng-repeat="tool in techSkills.SouceControlTools"><input type="checkbox" ng-click="toggleSelection(tool,skillset)" ng-checked="isAskill(tool)"/>{{tool}}</pre></div>
 													
-													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox"  ng-click="toggleSelection(technology)" ng-checked="isAskill(technology)"/>{{technology}}</pre></div>
-													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os)" ng-checked="isAskill(os)"/>{{os}}</pre></div>
+													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox"  ng-click="toggleSelection(technology,skillset)" ng-checked="isAskill(technology)"/>{{technology}}</pre></div>
+													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os,skillset)" ng-checked="isAskill(os)"/>{{os}}</pre></div>
 												</fieldset>
 												 
 												<button class="button" ng-click="empeditform.$valid && addEmp(employee.emp,employee.projects,neweditprojects)">Submit</button>
