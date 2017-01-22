@@ -206,7 +206,7 @@ empappobj.controller("mainController",function($http,$scope,EmpshowService,$loca
 	{
 		console.log("Searching initiated...!!!!");
 		if(angular.equals($scope.searchCriteria, "searchBySkillset"))
-			$scope.param = $scope.param.split(' ').join('%');
+			$scope.param = $scope.param.split(' ').join(',');
 		console.log($scope.param);
 		$http.get($scope.baseUrl+'/'+$scope.searchCriteria+'/'+$scope.param)
 		.then(
