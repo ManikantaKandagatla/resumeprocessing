@@ -1,19 +1,16 @@
 (function(){
 
-	var interviwer = angular.module("interviewer",[]);
+	var interviewerApp = angular.module("interviewerApp",[]);
 	
 	/*
 	 * Controller handling requesting from view and passing into service
 	 */
 	
-	interviwer.controller("utilController",function($http,$scope,utilService){
+	interviewerApp.controller("utilController",function($http,$scope,utilService){
 		
-		$scope.id = null;
-		$scope.name = null;
-		$scope.role = null;
-		$scope.mail = null;
-		$scope.expertese = null;
-		$scope.id = null;
+		$scope.interviewer = {};
+		$scope.expertese = [];
+		$scope.baseUrl = '/resumeprocessing';
 		$scope.techSkills={
 				"Languages":["C","C++","JAVA","Python","C#","Perl"],
 				"SouceControlTools":["Git","Clear Case","SVN"],
@@ -21,15 +18,14 @@
 				"OperatingSystems":["Windows","Linux","Solaris","Unix","IBM","Redhat"]
 			};
 		
+		$scope.init = function(){
+			utilService.setBaseUrl($scope.baseUrl);
+		}
+		
 		$scope.addInterviewer = function()
 		{
-			var interviewer = {
-				id : $scope.id,
-				name: $scope.name,
-				role: $scope.mail,
-				expertese : $scope.expertese
-			};
-			utilService.setInterviewer(interviewer);
+			$scope.interviewer['expertese'] = $scope.expertese.join(',');;
+			utilService.setInterviewer($scope.interviewer);
 			utilService.addInterviewer();
 		};
 		
@@ -114,19 +110,23 @@
 	 * Angular factory providing calls to java application
 	 */
 	
-	interviewer.factory("utilService",function()
+	interviewerApp.factory("utilService",function($http)
 	{
 		var datafunctions = {};
 		this.interviewer = null;
 		datafunctions.clearAll =function(){
 			this.interviwer = null;
 		};
-		datafunctions.setInterviewer = function(interviewer)
-		{
+		
+		datafunctions.setBaseUrl = function(baseUrl){
+			this.baseUrl = baseUrl;
+		};
+		
+		datafunctions.setInterviewer = function(interviewer){
 			this.interviewer = interviewer;
 		};
-		datafunctions.getInterviewer = function()
-		{
+		
+		datafunctions.getInterviewer = function(){
 			return this.interviewer;
 		};
 		
@@ -136,7 +136,9 @@
 		datafunctions.addInterviewer = function()
 		{
 			var interviewer = datafunctions.getInterviewer();
-			$http.post($scope.baseUrl+'/addInterviewer',interviewer)
+			var formData = new FormData();
+			formData.append('interviewer', JSON.stringify(interviewer));
+			$http.post(this.baseUrl+'/addInterviewer',formData,{ transformRequest: angular.identity, headers: {'Content-Type': undefined} })
 			.then(
 					function(response) 
 					{
@@ -155,7 +157,7 @@
 		 * */
 		datafunctions.getInterviewersfromrepo = function(interviewerId)
 		{
-			$http.post($scope.baseUrl+'/retrieveAllInterviewers')
+			$http.post(this.baseUrl+'/retrieveAllInterviewers')
 			.then(
 					function(response) 
 					{
@@ -167,7 +169,7 @@
 						console.error('Error reaching the url /retrieveAllInterviewers specified');
 					});
 		};//end of getInterviewersfromrepo
-			
+		return datafunctions;	
 	});//end of util service
 	
-});//end of function
+})();//end of function
