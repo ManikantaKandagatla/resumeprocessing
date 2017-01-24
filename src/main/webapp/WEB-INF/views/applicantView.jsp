@@ -13,11 +13,11 @@
 	<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular-route.js"></script>-->
 	<script src="/resumeprocessing/resources/js/angular.min.js"></script> 	
 	 
-    <script src="/resumeprocessing/resources/js/empcontroller.js"></script>
+    <script src="/resumeprocessing/resources/js/applicantController.js"></script>
     
 </head>
 
-<body ng-app="empapp">
+<body ng-app="applicantApp">
 <div class="large-12 columns">
 <center><h3>Employee Interview App</h3></center>
 </div>

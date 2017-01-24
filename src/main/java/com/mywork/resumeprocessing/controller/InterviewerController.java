@@ -5,10 +5,13 @@ package com.mywork.resumeprocessing.controller;
 
 import java.io.IOException;
 
+import com.mywork.resumeprocessing.model.CompleteEmployee;
 import com.mywork.resumeprocessing.model.Interviewer;
 import com.mywork.resumeprocessing.service.EmployeeService;
 import com.mywork.resumeprocessing.service.InterviewerService;
 
+import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -39,9 +42,14 @@ public class InterviewerController {
 		// TODO Auto-generated constructor stub
 	}
 	
-	@RequestMapping(value = "/addInterviewer", method = RequestMethod.POST,consumes = {"application/json"})
-	public void addInterviewer(@RequestBody Interviewer interviewer)throws Exception
+	@RequestMapping(value = "/addInterviewer", method = RequestMethod.POST)
+	public void addInterviewer(@RequestParam("interviewer") String strinterviewer)throws Exception
 	{
+		//boolean success = true;
+		ObjectMapper mapper = new ObjectMapper();
+		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
+		Interviewer interviewer = mapper.readValue(strinterviewer, Interviewer.class);
 		interviewerService.addInterviewer(interviewer);
+		
 	}
 }

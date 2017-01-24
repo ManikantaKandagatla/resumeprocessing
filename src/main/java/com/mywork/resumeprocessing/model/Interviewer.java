@@ -36,6 +36,13 @@ public class Interviewer {
 	@Column
 	private String expertese;
 	
+	@Column 
+	private String mail;
+	
+	@Column
+	private String contact;
+	
+	
 	public Interviewer() {
 		// TODO Auto-generated constructor stub
 	}
@@ -78,5 +85,18 @@ public class Interviewer {
 	public void setRole(String role) {
 		this.role = role;
 	}
-
+	
+	public String getMail() {
+		return mail;
+	}
+	public void setMail(String mail) {
+		this.mail = mail;
+	}
+	
+	public String getContact() {
+		return contact;
+	}
+	public void setContact(String contact) {
+		this.contact = contact;
+	}
 }
