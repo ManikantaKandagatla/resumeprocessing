@@ -1,15 +1,17 @@
 <html>
 <head>
-	<script src="/empapp/resources/js/angular.min.js"></script>
-	<script src="/empapp/resources/js/angular-route.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
+	<script src="/resumeprocessing/resources/js/angular.min.js"></script>
 	<script src="/resumeprocessing/resources/js/interviewerController.js"></script>
 
 </head>
-<body ng-app="interviewer">
+<body ng-app="interviewerApp">
 <div class="large-12 columns">
 <center><h3>Employee Interview App</h3></center>
 </div>
-<div class="large-12 columns" ng-controller="utilController as ctrl">
+<div class="large-12 columns" ng-controller="utilController as ctrl" ng-init="init()">
   <div class="medium-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
       <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">New Interviewer Details</a></li>
@@ -32,11 +34,12 @@
 											<div class="callout panel">
 											
 												<table width="100%">	
-													 <tr><td><pre>First Name</pre></td><td><input type="textbox" ng-model="firstname" ng-required = "true"></td></tr>
-													 <tr><td><pre>Last Name</pre></td><td><input type="textbox" ng-model="lastname" ng-required = "true"></td></tr>	
-													 <tr><td><pre>Role</pre></td><td><input type="textbox" ng-model="role" ng-required = "true"></td></tr>						
-													 <tr><td><pre>Contact</pre></td><td><input type="textbox" ng-model = "contact" ng-required = "true"></td></tr>					
-													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "email" ng-required = "true"></td></tr>
+													 <tr><td><pre>First Name</pre></td><td><input type="textbox" ng-model="interviewer.firstname" ng-required = "true"></td></tr>
+													 <tr><td><pre>Last Name</pre></td><td><input type="textbox" ng-model="interviewer.lastname" ng-required = "true"></td></tr>	
+													 <tr><td><pre>Role</pre></td><td><input type="textbox" ng-model="interviewer.role" ng-required = "true"></td></tr>						
+													 <tr><td><pre>Contact</pre></td><td><input type="textbox" ng-model = "interviewer.contact" ng-required = "true"></td></tr>
+													 <tr><td><pre>QuicklookId</pre></td><td><input type="textbox" ng-model = "interviewer.quicklookid" ng-required = "true"></td></tr>					
+													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "interviewer.email" ng-required = "true"></td></tr>
 												</table>
 											</div>
 									</fieldset>

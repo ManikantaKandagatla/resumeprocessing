@@ -5,9 +5,7 @@ package com.mywork.resumeprocessing.controller;
 
 import java.io.IOException;
 
-import com.mywork.resumeprocessing.model.CompleteEmployee;
 import com.mywork.resumeprocessing.model.Interviewer;
-import com.mywork.resumeprocessing.service.EmployeeService;
 import com.mywork.resumeprocessing.service.InterviewerService;
 
 import org.codehaus.jackson.map.DeserializationConfig;
