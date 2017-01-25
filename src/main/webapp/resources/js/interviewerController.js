@@ -34,6 +34,35 @@
 			$scope.dbInterviewers = utilService.getInterviewersfromRepo();
 		};
 		
+		$scope.dispAllInterviewers = function()
+		{
+			console.log("Retrieving all emps");
+			$scope.toAdd  = false;
+			$scope.ViewAll = true;
+			$scope.showsearchdiv = false;
+			$scope.ViewSelected = false;
+			$scope.editDiv=false;
+			$scope.AllInterviewers = [];
+			console.log($scope.AllInterviewers);
+			utilService.getAllInterviewers()
+			.then(
+					function(allInterviewers){
+						$scope.AllInterviewers = allInterviewers;
+					},
+					function(errResponse)
+					{
+					
+					});
+			console.log($scope.AllInterviewers);
+		};
+		
+		$scope.selInterviewer = function(interviewer)
+		{
+			$scope.selInterviewer=interviewer;
+			$scope.ViewAll=false;
+			$scope.ViewSelected = true;
+		};
+		
 		$scope.toggleSelection = function(skillname)
 		{
 			var index = $scope.expertese.indexOf(skillname);
@@ -72,7 +101,7 @@
 			$scope.ViewSelected = false;
 		};
 		
-		$scope.selInterviewer = function(interviewer){
+		$scope.DetailInterviewer = function(interviewer){
 			$scope.selInterviewer = interviewer;
 			$scope.ViewAll = false;
 			$scope.ViewSelected = true;
@@ -84,7 +113,7 @@
 			if(angular.equals($scope.searchCriteria, "search By Expertese"))
 				$scope.param = $scope.param.split(' ').join('%');
 			console.log($scope.param);
-			$http.post($scope.baseUrl+'/'+$scope.searchCriteria,$scope.param)
+			$http.get($scope.baseUrl+'/'+$scope.searchCriteria,$scope.param)
 			.then(
 					function(response) 
 					{
@@ -110,7 +139,7 @@
 	 * Angular factory providing calls to java application
 	 */
 	
-	interviewerApp.factory("utilService",function($http)
+	interviewerApp.factory("utilService",function($http,$q)
 	{
 		var datafunctions = {};
 		this.interviewer = null;
@@ -155,20 +184,25 @@
 		/*
 		 * API to handle retrieving interviewers from the repository
 		 * */
-		datafunctions.getInterviewersfromrepo = function(interviewerId)
+		datafunctions.getAllInterviewers = function(interviewerId)
 		{
-			$http.post(this.baseUrl+'/retrieveAllInterviewers')
+			var defer = $q.defer();
+			$http.get(this.baseUrl+'/retrieveAllInterviewers')
 			.then(
 					function(response) 
 					{
 						console.log("Retrieved interviewers");
 						console.log(response.data);
-						$scope.AllInterviewers = response.data;
+						defer.resolve(response.data);
+						this.AllInterviewers = response.data;
 					},
 					function(errResponse){
+						defer.reject(response.data);
+						this.AllInterviewers = [];
 						console.error('Error reaching the url /retrieveAllInterviewers specified');
 					});
-		};//end of getInterviewersfromrepo
+			return defer.promise;
+		};//end of getAllInterviewers
 		return datafunctions;	
 	});//end of util service
 	

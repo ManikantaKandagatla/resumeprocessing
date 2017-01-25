@@ -39,7 +39,7 @@
 													 <tr><td><pre>Role</pre></td><td><input type="textbox" ng-model="interviewer.role" ng-required = "true"></td></tr>						
 													 <tr><td><pre>Contact</pre></td><td><input type="textbox" ng-model = "interviewer.contact" ng-required = "true"></td></tr>
 													 <tr><td><pre>QuicklookId</pre></td><td><input type="textbox" ng-model = "interviewer.quicklookid" ng-required = "true"></td></tr>					
-													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "interviewer.email" ng-required = "true"></td></tr>
+													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "interviewer.mail" ng-required = "true"></td></tr>
 												</table>
 											</div>
 									</fieldset>
@@ -66,7 +66,7 @@
       <div class="tabs-panel" id="panel2v">
 		<div class="row" >
 				   <div class="callout panel">
-						<button class="button" ng-click="dispAllemp()">Retrieve All Interviewers</button>
+						<button class="button" ng-click="dispAllInterviewers()">Retrieve All Interviewers</button>
 						<button class="button" ng-click="searchdiv()">Search</button>
 						<div class="callout panel" ng-show="showsearchdiv">
 						
@@ -103,8 +103,8 @@
 						<table width="100%" >
 								<tr><th>Firstname</th><th>Expertese</th><th>Quicklook id</th></tr>
 								<tr ng-repeat = "interviewer in AllInterviewers"> 
-									<td><button ng-click="selInterviewer(interviewer)">{{interviewer.firstname}}</button></td>
-									<td>{{interviewer.skillset}}</td>
+									<td><button ng-click="DetailInterviewer(interviewer)">{{interviewer.firstname}}</button></td>
+									<td>{{interviewer.expertese}}</td>
 									<td>{{interviewer.quicklookid}}</td>
 									<!--  <td><button class="button" ng-click="ViewResume(employee.emp.contact)">View Resume</button></td>-->
 									<!--  <td><input type="file" id="updateresume" name="resume" class="button"/></td>-->
@@ -117,17 +117,18 @@
 						<fieldset>
 						<legend>Personal Details</legend>
 							<table  width="100%">
-								<tr><td>First Name</td><td>{{selemp.emp.firstname}}</td></tr>
-								<tr><td>Last Name</td><td>{{selemp.emp.lastname}}</td></tr>
-								<tr><td>email address</td><td>{{selemp.emp.email}}</td></tr>
-								<tr><td>Current Experience</td><td>{{selemp.emp.currentexperience}}</td></tr>
-								<tr><td>Total Experience</td><td>{{selemp.emp.totalexperience}}</td></tr>
+								<tr><td>First Name</td><td>{{selInterviewer.firstname}}</td></tr>
+								<tr><td>Last Name</td><td>{{selInterviewer.lastname}}</td></tr>
+								<tr><td>email address</td><td>{{selInterviewer.mail}}</td></tr>
+								<tr><td>Current Experience</td><td>{{selInterviewer.contact}}</td></tr>
+								<tr><td>Total Experience</td><td>{{selInterviewer.totalexperience}}</td></tr>
+								<tr><td>Quicklook id</td><td>{{selInterviewer.quicklookid}}</td></tr>
 							</table>
 						</fieldset>
 						
 						<fieldset>
 						<legend>Expertese Technical Skills</legend>
-							<div class="callout panel"><pre>Skill set :{{selemp.emp.skillset}}</pre>
+							<div class="callout panel"><pre>Skill set :{{selInterviewer.expertese}}</pre>
 								
 							</div>
 						</fieldset>
