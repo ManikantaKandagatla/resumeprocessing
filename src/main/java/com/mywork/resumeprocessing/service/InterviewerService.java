@@ -3,8 +3,12 @@
  */
 package com.mywork.resumeprocessing.service;
 
+import java.util.List;
+
 import javax.transaction.Transactional;
 
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -22,6 +26,7 @@ public class InterviewerService {
 	/**
 	 * 
 	 */
+	private static final Logger log = LoggerFactory.getLogger(InterviewerService.class);
 	@Autowired
 	private InterviewerDAO interviewerDAO;
 	
@@ -32,5 +37,11 @@ public class InterviewerService {
 	public void addInterviewer(Interviewer interviewer)
 	{
 		interviewerDAO.addInterviewer(interviewer);
+	}
+	
+	public List<Interviewer> getAllinterviewer()
+	{
+		log.info("Retrieving Employees..!!");
+		return interviewerDAO.getAllinterviewer();
 	}
 }

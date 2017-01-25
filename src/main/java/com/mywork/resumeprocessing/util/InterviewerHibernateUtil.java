@@ -3,11 +3,15 @@
  */
 package com.mywork.resumeprocessing.util;
 
+import java.util.List;
+
+import org.hibernate.Criteria;
 import org.hibernate.SessionFactory;
 import org.hibernate.Session;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
+
 import com.mywork.resumeprocessing.model.Interviewer;;
 
 @Repository
@@ -28,9 +32,9 @@ public class InterviewerHibernateUtil {
 	{
 		try
 		{
-			Session session = sessionFactory.openSession();
-			long id = (Long) session.save(interviewer);
-			System.out.println(""+id+" objects inserted..!!!");
+			Session session = sessionFactory.getCurrentSession();
+			session.persist(interviewer);
+			System.out.println("objects inserted..!!!");
 			
 		}
 		catch(Exception e)
@@ -38,5 +42,12 @@ public class InterviewerHibernateUtil {
 			System.out.println("Exception:" + e);
 		}
 	}
-
+	
+	@SuppressWarnings("unchecked")
+	 public List<Interviewer> fetchAll() 
+	 {
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(Interviewer.class);
+		 return (List<Interviewer>) criteria.list();
+	 }
+	 
 }

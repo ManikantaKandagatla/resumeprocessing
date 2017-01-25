@@ -33,4 +33,10 @@ public class InterviewerDAO {
 	public void addInterviewer(Interviewer interviewer) {
 		interviewerHibernateUtil.save(interviewer);
 	}
+	
+	public List<Interviewer> getAllinterviewer()
+	{
+		List<Interviewer> interviewer = interviewerHibernateUtil.fetchAll();
+		return interviewer;
+	}
 }
