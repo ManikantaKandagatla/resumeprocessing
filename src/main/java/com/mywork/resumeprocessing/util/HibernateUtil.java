@@ -32,8 +32,8 @@ public class HibernateUtil {
 	private static final Logger log = LoggerFactory.getLogger(HibernateUtil.class);
 	@Autowired
 	private SessionFactory sessionFactory;
-	public boolean create(Object entity,List<EmpProjects> projects,EmpResume resumeobj) {
-		
+	public boolean create(Object entity,List<EmpProjects> projects,EmpResume resumeobj) 
+	{
 		EmpProfile emp = (EmpProfile)entity;
 		Session session = sessionFactory.getCurrentSession();
 		try
@@ -62,11 +62,22 @@ public class HibernateUtil {
 	 @SuppressWarnings("unchecked")
 	 public List<EmpProfile> fetchAll() 
 	 {
+		 log.info("Retrieving all Applicants..!!");
 		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
-		 return (List<EmpProfile>) criteria.list();
+		 List<EmpProfile> empProfiles = null;
+		 try
+		 {
+			 empProfiles = (List<EmpProfile>)criteria.list();;
+		 }
+		 catch(Exception e)
+		 {
+			 e.printStackTrace();
+		 }
+		 return empProfiles;
 	 }
 	 
-	 public void deleteEmployeeByid(String id) {
+	 public void deleteEmployeeByid(String id) 
+	 {
 		 Query query = sessionFactory.getCurrentSession().createSQLQuery("delete from EmpProjects where contact = :contact");
 		 query.setString("contact", id);
 		 query.executeUpdate();
@@ -84,14 +95,32 @@ public class HibernateUtil {
 	 {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
 		criteria.add(Restrictions.like(property, value, MatchMode.ANYWHERE));
-		return (List<EmpProfile>) criteria.list();
+		List<EmpProfile> empProfiles = null;
+		try
+		{
+			empProfiles = (List<EmpProfile>)criteria.list();;
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return  empProfiles;
 	}
 	 
 	 public EmpProfile getEmployee(String contact)
 	 {
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
 		criteria.add(Restrictions.eq("contact", contact));
-		return  (EmpProfile) criteria.uniqueResult();
+		EmpProfile empProfile = null;
+		try
+		{
+			empProfile = (EmpProfile) criteria.uniqueResult();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return  empProfile;
 	 }
 	 
 	 
@@ -109,7 +138,16 @@ public class HibernateUtil {
 		// TODO Auto-generated method stub
 		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProjects.class);
 		criteria.add(Restrictions.eq("contact", contact));
-		return  (List<EmpProjects>) criteria.list();
+		List<EmpProjects> listEmpProjects = null;
+		try
+		{
+			listEmpProjects = (List<EmpProjects>) criteria.list();
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+		return listEmpProjects;
 	}
 
 	/*public void storeResume(EmpResume resume) 

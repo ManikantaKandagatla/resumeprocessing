@@ -45,22 +45,25 @@ public class EmployeeService {
     }
  
 	public List<CompleteEmployee> searchEmployeeByName(String firstname) {
-		log.info("Search Employee..!!");
+		log.info("Search Employee by Name: "+ firstname);
         return empDAO.searchEmployeeByName(firstname);
     }
 	public List<CompleteEmployee> searchEmployeeByContact(String contact) {
-		log.info("Search Employee..!!");
+		log.info("Search Employee by contact: "+contact);
 		return  empDAO.searchEmployeeByContact(contact);
     }
 	public List<CompleteEmployee> searchEmployeeBySkillset(String skillset) {
+		log.info("Search Employee by skillset: "+skillset);
         return empDAO.searchEmployeeBySkillset(skillset);
     }
  
 	public CompleteEmployee getEmployee(String id){
+		log.info("Fetching Applicants complete details..!!");
 		return empDAO.getEmployee(id);
 	}
 	
 	public EmpResume getEmployeeResume(String id){
+		log.info("Fetching resume of Applicant..!!");
 		return empDAO.getEmployeeResume(id);
 	}
 	

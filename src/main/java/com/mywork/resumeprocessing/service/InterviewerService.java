@@ -36,6 +36,7 @@ public class InterviewerService {
 	
 	public void addInterviewer(Interviewer interviewer)
 	{
+		log.info("Creating Employee..!!");
 		interviewerDAO.addInterviewer(interviewer);
 	}
 	
