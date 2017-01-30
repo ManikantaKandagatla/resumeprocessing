@@ -19,11 +19,15 @@ import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.mywork.resumeprocessing.model.CompleteEmployee;
 import com.mywork.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.model.Mail;
 import com.mywork.resumeprocessing.service.EmployeeService;
+import com.mywork.resumeprocessing.service.MailService;
+
 import java.io.IOException;
 import java.util.List;
 
 import javax.servlet.http.HttpServletResponse;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -35,8 +39,12 @@ public class EmployeeController {
 	private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
 	@Autowired
 	private EmployeeService employeeService;
-
-
+	
+	@Autowired 
+	private MailService mailService;
+	
+	private Mail mail = null;
+	
 	@RequestMapping(value = "/addEmp", method = RequestMethod.POST)
 	public String addEmp(@RequestParam("resume") CommonsMultipartFile resume,@RequestParam("employee") String stremployee)throws IOException
 	{
@@ -54,8 +62,18 @@ public class EmployeeController {
 		employeeService.deleteEmployeeByid(employee.getEmp().getContact());
 		success = employeeService.createEmployee(employee,resumeobj);
 		if(success)
+		{
+			mail = new Mail();
+			mail.setSubject("Notifiation: Applicant" + employee.getEmp().getFirstname()+ "created successfully");
+			mail.setToAddress("kanta.123479@gmail.com");
+			mail.setBody("The details are added into the Repository..!!");
+			mailService.sendHtmlMail(mail);
 			return "Employee Created successfully";
-		else return "Error Creating Employee";
+		}
+		else 
+		{
+			return "Error Creating Employee";
+		}
 	}
 	
 	
