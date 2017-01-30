@@ -81,13 +81,12 @@ public class HibernateUtil {
 		 Query query = sessionFactory.getCurrentSession().createSQLQuery("delete from EmpProjects where contact = :contact");
 		 query.setString("contact", id);
 		 query.executeUpdate();
-		 query = sessionFactory.getCurrentSession().createSQLQuery("delete from EmpProfile where contact = :contact");
-		 query.setString("contact", id);
-		 query.executeUpdate();
 		 query = sessionFactory.getCurrentSession().createSQLQuery("delete from Empresume where contact = :contact");
 		 query.setString("contact", id);
 		 query.executeUpdate();
-		 
+		 query = sessionFactory.getCurrentSession().createSQLQuery("delete from EmpProfile where contact = :contact");
+		 query.setString("contact", id);
+		 query.executeUpdate();
 	 }
 	 	
 	 @SuppressWarnings("unchecked")
