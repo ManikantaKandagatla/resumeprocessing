@@ -45,7 +45,7 @@ public class EmployeeController {
 	
 	private Mail mail = null;
 	
-	@RequestMapping(value = "/addEmp", method = RequestMethod.POST)
+	@RequestMapping(value = "/addApplicant", method = RequestMethod.POST)
 	public String addEmp(@RequestParam("resume") CommonsMultipartFile resume,@RequestParam("employee") String stremployee)throws IOException
 	{
 		boolean success = true;
@@ -78,7 +78,7 @@ public class EmployeeController {
 	
 	
 	
-	@RequestMapping(value= "/retrieveAllEmps", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")
+	@RequestMapping(value= "/retrieveAllApplicants", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")
 	public @ResponseBody List<CompleteEmployee> getAllEmps()
 	{
 		log.info("Retrieving all employees");

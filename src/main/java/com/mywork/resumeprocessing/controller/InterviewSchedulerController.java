@@ -13,8 +13,10 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
+import org.springframework.beans.factory.annotation.Autowired;
 
 import com.mywork.resumeprocessing.model.BulkScheduledInterviews;
+import com.mywork.resumeprocessing.service.InterviewSchedulerService;
 
 /**
  * @author ManiKanta Kandagatla
@@ -25,6 +27,9 @@ public class InterviewSchedulerController {
 
 	private static final Logger log = LoggerFactory.getLogger(InterviewerController.class);
 	
+	@Autowired
+	private InterviewSchedulerService interviewSchedulerService;
+	
 	@RequestMapping(value = "/scheduleInterviews", method = RequestMethod.POST)
 	public void scheduleInterview(@RequestParam("scheduledInterviews") String scheduleInterview)throws Exception
 	{
@@ -32,7 +37,7 @@ public class InterviewSchedulerController {
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		BulkScheduledInterviews scheduledInterviews = mapper.readValue(scheduleInterview, BulkScheduledInterviews.class);
-		
+		interviewSchedulerService.scheduleInterviews(scheduledInterviews.getScheduledInterviews());
 	}
 	
 }
