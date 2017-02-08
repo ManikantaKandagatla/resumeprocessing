@@ -3,8 +3,12 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/css/foundation.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/vendor/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/foundation/6.0.1/js/foundation.min.js"></script>
-	<script src="/resumeprocessing/resources/js/angular.min.js"></script>
-	<script src="/resumeprocessing/resources/js/interviewerController.js"></script>
+	<!--   <script src="/resumeprocessing/resources/js/angular.min.js"></script> -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="/resumeprocessing/resources/js/appJS/Interviewerapp.js"></script>
+	<script src="/resumeprocessing/resources/js/Controller/interviewerController.js"></script>
+	<script src="/resumeprocessing/resources/js/Service/interviewerService.js"></script>
 
 </head>
 <body ng-app="interviewerApp">

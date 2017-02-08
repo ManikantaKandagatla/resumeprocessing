@@ -11,9 +11,13 @@
 	<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular.js"></script>-->
 	
 	<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular-route.js"></script>-->
-	<script src="/resumeprocessing/resources/js/angular.min.js"></script> 	
-	 
-    <script src="/resumeprocessing/resources/js/applicantController.js"></script>
+	<!-- <script src="/resumeprocessing/resources/js/angular.min.js"></script>  -->
+	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script> 	
+	<script src="/resumeprocessing/resources/js/appJS/applicantapp.js"></script>
+    <script src="/resumeprocessing/resources/js/Controller/applicantController.js"></script>
+    <script src="/resumeprocessing/resources/js/Service/applicantService.js"></script>
+     <script src="/resumeprocessing/resources/js/Directive/applicantDirective.js"></script>
     
 </head>
 
@@ -84,7 +88,7 @@
 													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os)"/>{{os}}</pre></div>
 												</fieldset>
 												 <input type="file" id="resume" name="resume" ng-required = "true"/>
-												<button class="button" ng-click="empform.$valid && addEmp(empobj,empProjs,newprojects)">Submit</button>
+												<button class="button" ng-click="empform.$valid && addApplicant(empobj,empProjs,newprojects)">Submit</button>
 											</div>	
 									</fieldset>	
 									</form>

@@ -19,8 +19,8 @@ import javax.persistence.Table;
  *
  */
 @Entity
-@Table(name = "InterviewScheduler")
-public class InterviewScheduler {
+@Table(name = "ScheduledInterview")
+public class ScheduledInterview {
 	
 	@Id
 	@Column
