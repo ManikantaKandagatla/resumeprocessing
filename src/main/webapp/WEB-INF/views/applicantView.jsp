@@ -13,11 +13,13 @@
 	<!--<script src = "https://cdnjs.cloudflare.com/ajax/libs/angular.js/1.2.0/angular-route.js"></script>-->
 	<!-- <script src="/resumeprocessing/resources/js/angular.min.js"></script>  -->
 	
-	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script> 	
+	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
+	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
 	<script src="/resumeprocessing/resources/js/appJS/applicantapp.js"></script>
     <script src="/resumeprocessing/resources/js/Controller/applicantController.js"></script>
     <script src="/resumeprocessing/resources/js/Service/applicantService.js"></script>
-     <script src="/resumeprocessing/resources/js/Directive/applicantDirective.js"></script>
+     <script src="/resumeprocessing/resources/js/Directives/applicantDirective.js"></script>
+     <script src="/resumeprocessing/resources/js/routes/applicantRoutes.js"></script>
     
 </head>
 
@@ -28,8 +30,8 @@
 <div class="large-12 columns" ng-controller="mainController as ctrl" ng-init="initEmp()">
   <div class="medium-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
-      <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">New Details</a></li>
-      <li class="tabs-title"><a href="#panel2v">Retrieve Employees</a></li>
+      <li class="tabs-title is-active"><a href="#/newApplicant" aria-selected="true">New Details</a></li>
+      <li class="tabs-title"><a href="#/searchApplicant">Search Employees</a></li>
       <li class="tabs-title"><a href="#panel3v">Edit Employee</a></li>
       <li class="tabs-title"><a href="#panel4v">Function 4</a></li>
       <li class="tabs-title"><a href="#panel3v">Function 5</a></li>
@@ -39,7 +41,8 @@
     <div class="medium-9 columns">
     <div class="tabs-content vertical" data-tabs-content="example-vert-tabs">
       <div class="tabs-panel is-active" id="panel1v">
-        <div class = "row">
+      <div ng-view></div>
+        <!-- <div class = "row">
 						<div  class="large-12 columns"  >
 								<div class="callout panel">
 									<form name="empform">
@@ -94,7 +97,7 @@
 									</form>
 								</div>
 						</div>
-      </div>
+      </div>-->
 	  </div>
       <div class="tabs-panel" id="panel2v">
 		<div class="row" >

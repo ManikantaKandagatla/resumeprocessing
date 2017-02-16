@@ -1,0 +1,56 @@
+<div class = "row">
+						<div  class="large-12 columns"  >
+								<div class="callout panel">
+									<form name="empform">
+									<fieldset>
+										<legend>Personal Details</legend>
+											<div class="callout panel">
+											
+												<table width="100%">	
+													 <tr><td><pre>First Name</pre></td><td><input type="textbox" ng-model="empobj.firstname" ng-required="true"></td></tr>
+													 <tr><td><pre>Last Name</pre></td><td><input type="textbox" ng-model="empobj.lastname" ng-required="true"></td></tr>						
+													 <tr><td><pre>Current Experience</pre></td><td><input type="textbox" ng-model="empobj.currentexperience" ng-required="true"></td></tr>
+													 <tr><td><pre>Total Experience</pre></td><td><input type="textbox" ng-model="empobj.totalexperience" ng-required="true"></td></tr>
+													 <tr><td><pre>Designation</pre></td><td><input type="textbox" ng-model="empobj.designation" ng-required="true"></td></tr>
+													 <tr><td><pre>Qualification</pre></td><td><select ng-model ="empobj.qualification" ><option ng-repeat="qualification in qualification">{{qualification}}</option></select> </td></tr>
+													 <tr><td><pre>Contact</pre></td><td><input type="textbox" ng-model = "empobj.contact" ng-required="true"></td></tr>					
+													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "empobj.email" ng-required="true"></td></tr>
+													 <tr><td><pre>Location</pre></td><td><input type="textbox" ng-model = "empobj.location" ng-required="true"></td></tr>
+												</table>
+											</div>
+									</fieldset>
+									
+									<fieldset>
+										<legend>Project details</legend>
+										<div id="projects-div">
+											<div class="callout panel">
+												<table width="100%">	
+														 <tr><td><pre>project Title</pre></td><td><input type="textbox" ng-model = "empProjs[0].projecttitle" ng-required="true"></td></tr>
+														 <tr><td><pre>Project Duration</pre></td><td><input type="textfield" ng-model = "empProjs[0].projectduration" ng-required="true"></td></tr>
+														 <tr><td><pre>Project description</pre></td><td><textarea  rows="3" columns="50" wrap="hard" ng-model = "empProjs[0].projectdescription" ng-required="true"></textarea></td></tr>
+														  <tr><td><pre>Role in Project</pre></td><td><textarea  rows="2" columns="50" wrap="hard" ng-model = "empProjs[0].projectrole" ng-required="true"></textarea></td></tr>
+												</table>
+												
+												</div>
+											</div>
+											<addprojectsdiv></addprojectsdiv>
+									</fieldset>
+									
+									<fieldset>
+										<legend>Techincal Skills</legend>
+											<div class="callout panel">
+												<fieldset>
+													
+													<div class = "small-3 columns"><h5>Languages</h5><pre ng-repeat="language in techSkills.Languages"><input type="checkbox"  ng-click="toggleSelection(language)"/>{{language}}</pre></div>													
+													<div class = "small-3 columns"><h5>Source control Tools</h5><pre ng-repeat="tool in techSkills.SouceControlTools"><input type="checkbox" ng-click="toggleSelection(tool)"/>{{tool}}</pre></div>
+													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox"  ng-click="toggleSelection(technology)"/>{{technology}}</pre></div>
+													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os)"/>{{os}}</pre></div>
+												</fieldset>
+												 <input type="file" id="resume" name="resume" ng-required = "true"/>
+												<button class="button" ng-click="empform.$valid && addApplicant(empobj,empProjs,newprojects)">Submit</button>
+											</div>	
+									</fieldset>	
+									</form>
+								</div>
+						</div>
+      </div>

@@ -1,0 +1,33 @@
+<div class="callout panel">
+						<button class="button" ng-click="dispAllInterviewers()">Retrieve All Interviewers</button>
+						<button class="button" ng-click="searchdiv()">Search</button>
+						<div class="callout panel">	
+							<table width="60%">
+							<tr>
+							<td><input type="text"  ng-model="param"></td>
+							<td>
+								<select ng-model="searchCriteria" ng-change="CheckforSkills()">
+									<option>searchByName</option>
+									<option>searchByExpertese</option>
+									<option>searchByQuicklook id</option>
+								</select>
+							</td>
+							</tr>
+							</table>
+							
+							<fieldset ng-show="showsearchskills">
+										<legend>Techincal Skills</legend>
+											<div class="callout panel">
+												<fieldset>
+													<div class = "small-3 columns"><h5>Languages</h5><pre ng-repeat="language in techSkills.Languages"><input type="checkbox" ng-model="names.Selected" ng-click="toggleSelection(language)"/>{{language}}</pre></div>
+													
+													<div class = "small-3 columns"><h5>Source control Tools</h5><pre ng-repeat="tool in techSkills.SouceControlTools"><input type="checkbox" ng-model="names.Selected" ng-click="toggleSelection(tool)"/>{{tool}}</pre></div>
+													
+													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox" ng-model="names.Selected" ng-click="toggleSelection(technology)"/>{{technology}}</pre></div>
+													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox" ng-model="names.Selected" ng-click="toggleSelection(os)"/>{{os}}</pre></div>
+												</fieldset>
+											</div>	
+							</fieldset>	
+							
+							<button class="button" ng-click = "retrivebySearch()">RetrieveSearchCriteria</button>
+						</div>

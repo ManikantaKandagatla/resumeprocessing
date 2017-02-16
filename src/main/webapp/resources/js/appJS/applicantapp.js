@@ -1,3 +1,3 @@
 'use strict';
 
-var applicantApp = angular.module('applicantApp',[]);
+var applicantApp = angular.module('applicantApp',['ngRoute']);

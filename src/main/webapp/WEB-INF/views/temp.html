@@ -6,11 +6,10 @@
 	<!--   <script src="/resumeprocessing/resources/js/angular.min.js"></script> -->
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
-	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
 	<script src="/resumeprocessing/resources/js/appJS/Interviewerapp.js"></script>
 	<script src="/resumeprocessing/resources/js/Controller/interviewerController.js"></script>
 	<script src="/resumeprocessing/resources/js/Service/interviewerService.js"></script>
-	<script src="/resumeprocessing/resources/js/routes/interviewerRoutes.js"></script>
+
 </head>
 <body ng-app="interviewerApp">
 <div class="large-12 columns">
@@ -19,8 +18,8 @@
 <div class="large-12 columns" ng-controller="utilController as ctrl" ng-init="init()">
   <div class="medium-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
-      <li class="tabs-title is-active"><a href="#/newInterviewer" aria-selected="true">New Interviewer Details</a></li>
-      <li class="tabs-title"><a href="#/searchInterviewer">Search Interviewers</a></li>
+      <li class="tabs-title is-active"><a href="#panel1v" aria-selected="true">New Interviewer Details</a></li>
+      <li class="tabs-title"><a href="#panel2v">Retrieve Interviewers</a></li>
       <li class="tabs-title"><a href="#panel3v">Edit Interviewer</a></li>
       <li class="tabs-title"><a href="#panel4v">Function 4</a></li>
       <li class="tabs-title"><a href="#panel3v">Function 5</a></li>
@@ -30,8 +29,7 @@
     <div class="medium-9 columns">
     <div class="tabs-content vertical" data-tabs-content="example-vert-tabs">
       <div class="tabs-panel is-active" id="panel1v">
-      <div ng-view></div>
-        <!--  <div class = "row">
+        <div class = "row">
 						<div  class="large-12 columns"  >
 								<div class="callout panel">
 									<form name="empform">
@@ -67,7 +65,7 @@
 									</form>
 								</div>
 						</div>
-      </div>-->
+      </div>
 	  </div>
       <div class="tabs-panel" id="panel2v">
 		<div class="row" >
