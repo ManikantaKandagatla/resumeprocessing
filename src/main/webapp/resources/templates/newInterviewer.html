@@ -1,0 +1,39 @@
+<div>
+        <div class = "row">
+						<div  class="large-12 columns"  >
+								<div class="callout panel">
+									<form name="empform">
+									<fieldset>
+										<legend>Personal Details</legend>
+											<div class="callout panel">
+											
+												<table width="100%">	
+													 <tr><td><pre>First Name</pre></td><td><input type="textbox" ng-model="interviewer.firstname" ng-required = "true"></td></tr>
+													 <tr><td><pre>Last Name</pre></td><td><input type="textbox" ng-model="interviewer.lastname" ng-required = "true"></td></tr>	
+													 <tr><td><pre>Role</pre></td><td><input type="textbox" ng-model="interviewer.role" ng-required = "true"></td></tr>						
+													 <tr><td><pre>Contact</pre></td><td><input type="textbox" ng-model = "interviewer.contact" ng-required = "true"></td></tr>
+													 <tr><td><pre>QuicklookId</pre></td><td><input type="textbox" ng-model = "interviewer.quicklookid" ng-required = "true"></td></tr>					
+													 <tr><td><pre>mail</pre></td><td><input type="email" ng-model = "interviewer.mail" ng-required = "true"></td></tr>
+												</table>
+											</div>
+									</fieldset>
+									
+									<fieldset>
+										<legend>Expertese Techincal Skills</legend>
+											<div class="callout panel">
+												<fieldset>
+													
+													<div class = "small-3 columns"><h5>Languages</h5><pre ng-repeat="language in techSkills.Languages"><input type="checkbox"  ng-click="toggleSelection(language)"/>{{language}}</pre></div>													
+													<div class = "small-3 columns"><h5>Source control Tools</h5><pre ng-repeat="tool in techSkills.SouceControlTools"><input type="checkbox" ng-click="toggleSelection(tool)"/>{{tool}}</pre></div>
+													<div class = "small-3 columns"><h5>Web Technologies</h5><pre ng-repeat="technology in techSkills.WebTechnologies"><input type="checkbox"  ng-click="toggleSelection(technology)"/>{{technology}}</pre></div>
+													<div class = "small-3 columns"><h5>Operating Systems</h5><pre ng-repeat="os in techSkills.OperatingSystems"><input type="checkbox"  ng-click="toggleSelection(os)"/>{{os}}</pre></div>
+												</fieldset>
+												 <!-- <input type="file" id="resume" name="resume"/> -->
+												<button class="button" ng-click="empform.$valid && addInterviewer(interviewer)">Submit</button>
+											</div>	
+									</fieldset>	
+									</form>
+								</div>
+						</div>
+      </div>
+	  </div>

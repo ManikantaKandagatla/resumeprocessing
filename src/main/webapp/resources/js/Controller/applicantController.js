@@ -26,7 +26,6 @@ angular.module('applicantApp')
 	$scope.empProj = {};
 	
 	$scope.projectscount = 0;
-	$scope.baseUrl = '/resumeprocessing';
 	/*$scope.skillset=[];
 	$scope.empobj = {};
 	$scope.Allemps = [];

@@ -1,5 +1,5 @@
-angular.module("interviewerApp")
-.controller("utilController",['$http','$scope','InterviewerUtilService',function($http,$scope,InterviewerUtilService){
+angular.module('interviewerApp')
+.controller('utilController',['$http','$scope','InterviewerUtilService',function($http,$scope,InterviewerUtilService){
 		
 		$scope.interviewer = {};
 		$scope.expertese = [];

@@ -27,7 +27,7 @@ angular.module('applicantApp')
 	datafunctions.getAllApplicants = function(interviewerId)
 	{
 		var defer = $q.defer();
-		$http.get(this.baseUrl+'/retrieveAllApplicants')
+		$http.get(baseUrl+'/retrieveAllApplicants')
 		.then(
 				function(response) 
 				{

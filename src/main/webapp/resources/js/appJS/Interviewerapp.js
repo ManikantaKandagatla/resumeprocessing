@@ -1,3 +1,3 @@
 'use strict';
 
-var interviewerApp = angular.module('interviewerApp',[]);
+var interviewerApp = angular.module('interviewerApp',['ngRoute']);
