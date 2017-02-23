@@ -51,7 +51,7 @@ angular.module('interviewerApp')
 		datafunctions.getAllInterviewers = function()
 		{
 			var defer = $q.defer();
-			$http.get(this.baseUrl+'/retrieveAllInterviewers')
+			$http.get(baseUrl+'/retrieveAllInterviewers')
 			.then(
 					function(response) 
 					{

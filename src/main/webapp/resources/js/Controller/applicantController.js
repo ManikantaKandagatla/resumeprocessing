@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('applicantApp')
-.controller('mainController',['$http','applicantUtilService','$scope',function($http,$scope,applicantUtilService,$location,$sce){
+.controller('mainController',['$http','applicantUtilService','SharedService','$scope',function($http,$scope,applicantUtilService,SharedService,$location,$sce){
 	
 	
 	$scope.initEmp = function()
@@ -25,7 +25,7 @@ angular.module('applicantApp')
 	$scope.empProjs = [];
 	$scope.empProj = {};
 	
-	$scope.projectscount = 0;
+	//$scope.projectscount = SharedService.sharedObject.projectscount;
 	/*$scope.skillset=[];
 	$scope.empobj = {};
 	$scope.Allemps = [];
@@ -65,6 +65,7 @@ angular.module('applicantApp')
 		.then(
 				function(response) 
 				{
+					SharedService.sharedObject.projectscount = 0;
 					console.log("employee details stored..!!!!!!!!!!!!");
 					$scope.initEmp();
 					empobj= {};
