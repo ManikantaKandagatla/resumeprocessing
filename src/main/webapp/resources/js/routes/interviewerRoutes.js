@@ -1,19 +1,17 @@
 'use strict';
 
 angular.module('interviewerApp')
-.config(function($routeProvider){
-	$routeProvider
-	.when('/newInterviewer', {
+.config(function($stateProvider, $urlRouterProvider){
+	$urlRouterProvider.otherwise('/newInterviewer');
+   
+	$stateProvider
+	.state('new', {
+		url :'/newInterviewer',
 		templateUrl: 'resources/templates/newInterviewer.html'
 	})
 	
-	.when('/', {
-		templateUrl: 'resources/templates/newInterviewer.html'
-	})
-	
-	.when('/searchInterviewer',{
+	.state('search',{
+		url :'/searchInterviewer',
 		templateUrl: 'resources/templates/searchInterviewer.html'	
-	})
-	.otherwise({
-	redirectTo: '/'});
+	});
 });
