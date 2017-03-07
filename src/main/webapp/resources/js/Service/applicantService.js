@@ -24,7 +24,7 @@ angular.module('applicantApp')
 		return defer.promise;
 	};
 	
-	datafunctions.getAllApplicants = function(interviewerId)
+	datafunctions.getAllApplicants = function()
 	{
 		var defer = $q.defer();
 		$http.get(baseUrl+'/retrieveAllApplicants')
@@ -55,6 +55,23 @@ angular.module('applicantApp')
 				function(errResponse){
 					defer.reject(response.data);
 					console.error('Error reaching the url specified');
+				});
+		return defer.promise;
+	};
+	
+	datafunctions.getApplicantResume = function(applicantId)
+	{
+		var defer = $q.defer();
+		$http.get(baseUrl+'/getApplicantResume/'+applicantId,{responseType:'arraybuffer'})
+		.then(
+				function(response) 
+				{
+					console.log("Retrieved Employee Resume...!!!!");
+					defer.resolve(response.data);
+				},
+				function(errResponse){
+					defer.reject(response.data);
+					console.error('Error reaching the url /getApplicantResume specified');
 				});
 		return defer.promise;
 	};

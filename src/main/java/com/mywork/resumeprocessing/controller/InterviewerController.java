@@ -8,11 +8,9 @@ import java.util.List;
 
 import com.mywork.resumeprocessing.model.Interviewer;
 import com.mywork.resumeprocessing.service.InterviewerService;
-
+import org.apache.log4j.Logger; 
 import org.codehaus.jackson.map.DeserializationConfig;
 import org.codehaus.jackson.map.ObjectMapper;
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -36,7 +34,7 @@ public class InterviewerController {
 	/**
 	 * 
 	 */
-	private static final Logger log = LoggerFactory.getLogger(InterviewerController.class);
+	private static final Logger log = Logger.getLogger(InterviewerController.class);
 	@Autowired
 	private InterviewerService interviewerService; 
 	
@@ -48,6 +46,7 @@ public class InterviewerController {
 	public void addInterviewer(@RequestParam("interviewer") String strinterviewer)throws Exception
 	{
 		//boolean success = true;
+		log.info("Adding new Interviewer");
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
 		Interviewer interviewer = mapper.readValue(strinterviewer, Interviewer.class);
@@ -58,7 +57,7 @@ public class InterviewerController {
 	@RequestMapping(value= "/retrieveAllInterviewers", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")
 	public @ResponseBody List<Interviewer> getAllEmps()
 	{
-		log.info("Retrieving all employees");
+		log.info("Retrieving all Interviewers");
 		List<Interviewer> allInterviewers = interviewerService.getAllinterviewer();
 		log.info("Retrieved " +allInterviewers.size()+" employees");
 		return allInterviewers;
