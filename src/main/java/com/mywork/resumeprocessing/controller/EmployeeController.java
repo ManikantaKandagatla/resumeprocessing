@@ -3,8 +3,13 @@
  */
 package com.mywork.resumeprocessing.controller;
 
-import org.codehaus.jackson.map.ObjectMapper;
+import java.io.IOException;
+import java.util.List;
+
+import javax.servlet.http.HttpServletResponse;
+
 import org.codehaus.jackson.map.DeserializationConfig;
+import org.codehaus.jackson.map.ObjectMapper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
@@ -15,28 +20,21 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
-import org.springframework.web.multipart.commons.CommonsMultipartFile;	
+import org.springframework.web.multipart.commons.CommonsMultipartFile;
 
 import com.mywork.resumeprocessing.model.CompleteEmployee;
 import com.mywork.resumeprocessing.model.EmpResume;
 import com.mywork.resumeprocessing.model.Mail;
 import com.mywork.resumeprocessing.service.EmployeeService;
 import com.mywork.resumeprocessing.service.MailService;
-
-import java.io.IOException;
-import java.util.List;
-
-import javax.servlet.http.HttpServletResponse;
-
-import org.slf4j.Logger;
-import org.slf4j.LoggerFactory;
+import org.apache.log4j.Logger; 
 
 @RestController
 @Configuration
 @ComponentScan("com.mywork.resumeprocessing.service")
 public class EmployeeController {
 	
-	private static final Logger log = LoggerFactory.getLogger(EmployeeController.class);
+	private static final Logger log = Logger.getLogger(EmployeeController.class);
 	@Autowired
 	private EmployeeService employeeService;
 	
@@ -120,8 +118,8 @@ public class EmployeeController {
 		return employeeService.getEmployee(id);
 	}
 	
-	@RequestMapping(value="/getEmpResume/{id}",method = RequestMethod.GET,produces = "application/pdf")
-	public @ResponseBody byte[]  getEmployeeResume(@PathVariable String id,HttpServletResponse response)
+	@RequestMapping(value="/getApplicantResume/{id}",method = RequestMethod.GET,produces = "application/pdf")
+	public @ResponseBody byte[]  getApplicantResume(@PathVariable String id,HttpServletResponse response)
 	{
 		EmpResume resume = employeeService.getEmployeeResume(id);
 		byte[] content = resume.getEmpresume();

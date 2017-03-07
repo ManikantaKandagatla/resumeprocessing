@@ -1,7 +1,7 @@
 'use strict';
 
 angular.module('applicantApp')
-.controller('mainController',['$http','applicantUtilService','SharedService','$scope',function($http,$scope,applicantUtilService,SharedService,$location,$sce){
+.controller('mainController',['$http','$scope','applicantUtilService','SharedService',function($http,$scope,applicantUtilService,SharedService,$location,$sce){
 	
 	
 	$scope.initEmp = function()
@@ -25,13 +25,6 @@ angular.module('applicantApp')
 	$scope.empProjs = [];
 	$scope.empProj = {};
 	
-	//$scope.projectscount = SharedService.sharedObject.projectscount;
-	/*$scope.skillset=[];
-	$scope.empobj = {};
-	$scope.Allemps = [];
-	$scope.newprojects = [];
-	$scope.neweditprojects =[];
-	$scope.employee={};*/
 	$scope.searchObj = {};
 	$scope.showsearchdiv=false;
 	$scope.showempResume = false;
@@ -95,14 +88,36 @@ angular.module('applicantApp')
 				function(response) 
 				{
 					console.log("Retrieved applicants");
-					console.log(response.data);
-					$scope.Allemps = response.data;
+					console.log(response);
+					$scope.Allemps = response;
 				},
 				function(errResponse){
 					console.error('Error reaching the url /retrieveAllapplicants specified');
 				});
 		
 	};
+	
+	$scope.ViewResume = function(id){
+		console.log(id);
+		applicantUtilService.getApplicantResume(id)
+		.then(
+				function(response) 
+				{
+					console.log("Retrieved Employee Resume...!!!!");
+					var file = new Blob([response], {type: 'application/pdf'});
+					var fileURL = URL.createObjectURL(file);
+					var a         = document.createElement('a');
+					a.href        = fileURL; 
+					a.target      = '_blank';
+					document.body.appendChild(a);
+					a.click();
+				},
+				function(errResponse){
+					console.error('Error reaching the url /getEmpResume specified');
+				}
+		);
+	};
+	
 	
 	$scope.deleteEmployee = function(id)
 	{
@@ -247,25 +262,5 @@ angular.module('applicantApp')
 			return false;
 	};
 	
-	$scope.ViewResume = function(id){
-		console.log(id);
-		$http.get($scope.baseUrl+'/getEmpResume/'+id,{responseType:'arraybuffer'}).then(
-				
-				function(response) 
-				{
-					console.log("Retrieved Employee Resume...!!!!");
-					var file = new Blob([response.data], {type: 'application/pdf'});
-					var fileURL = URL.createObjectURL(file);
-					var a         = document.createElement('a');
-					a.href        = fileURL; 
-					a.target      = '_blank';
-					document.body.appendChild(a);
-					a.click();
-				},
-				function(errResponse){
-					console.error('Error reaching the url /getEmpResume specified');
-				}
-		);
-		
-	};
+	
 }]);

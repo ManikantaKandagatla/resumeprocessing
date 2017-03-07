@@ -15,11 +15,17 @@
 	
 	<script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular.js"></script>
 	<script src="http://ajax.googleapis.com/ajax/libs/angularjs/1.4.4/angular-route.js"></script>
+	<script src="https://angular-ui.github.io/ui-router/release/angular-ui-router.js"></script>
 	<script src="/resumeprocessing/resources/js/appJS/applicantapp.js"></script>
+	<script src="/resumeprocessing/resources/js/Service/sharedService.js"></script>
     <script src="/resumeprocessing/resources/js/Controller/applicantController.js"></script>
+    
     <script src="/resumeprocessing/resources/js/Service/applicantService.js"></script>
      <script src="/resumeprocessing/resources/js/Directives/applicantDirective.js"></script>
      <script src="/resumeprocessing/resources/js/routes/applicantRoutes.js"></script>
+     
+     
+     
     
 </head>
 
@@ -30,18 +36,18 @@
 <div class="large-12 columns" ng-controller="mainController as ctrl" ng-init="initEmp()">
   <div class="medium-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
-      <li class="tabs-title is-active"><a href="#/newApplicant" aria-selected="true">New Details</a></li>
-      <li class="tabs-title"><a href="#/searchApplicant">Search Employees</a></li>
-      <li class="tabs-title"><a href="#panel3v">Edit Employee</a></li>
+      <li class="tabs-title is-active"><a ui-sref="new" aria-selected="true">New Details</a></li>
+      <li class="tabs-title"><a ui-sref="search">View Employees</a></li>
+      <!--  <li class="tabs-title"><a href="#panel3v">Edit Employee</a></li>
       <li class="tabs-title"><a href="#panel4v">Function 4</a></li>
       <li class="tabs-title"><a href="#panel3v">Function 5</a></li>
-      <li class="tabs-title"><a href="#panel4v">Function  6</a></li>
+      <li class="tabs-title"><a href="#panel4v">Function  6</a></li>-->
     </ul>
     </div>
     <div class="medium-9 columns">
     <div class="tabs-content vertical" data-tabs-content="example-vert-tabs">
       <div class="tabs-panel is-active" id="panel1v">
-      <div ng-view></div>
+      <div ui-view></div>
         <!-- <div class = "row">
 						<div  class="large-12 columns"  >
 								<div class="callout panel">
