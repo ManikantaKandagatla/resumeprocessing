@@ -5,6 +5,7 @@ angular.module('interviewerApp')
 	$urlRouterProvider.otherwise('/newInterviewer');
    
 	$stateProvider
+
 	.state('new', {
 		url :'/newInterviewer',
 		templateUrl: 'resources/templates/newInterviewer.html'
@@ -13,5 +14,10 @@ angular.module('interviewerApp')
 	.state('search',{
 		url :'/searchInterviewer',
 		templateUrl: 'resources/templates/searchInterviewer.html'	
+	})
+
+	.state('scheduleInterview',{
+		url : 'scheduleInterview',
+		templateUrl: 'resources/templates/scheduleInterview.html'
 	});
 });

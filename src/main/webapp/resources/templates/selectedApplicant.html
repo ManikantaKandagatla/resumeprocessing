@@ -1,0 +1,51 @@
+<div class="callout panel">
+        <fieldset>
+            <legend>Personal Details</legend>
+            <table width="100%">
+                <tr>
+                    <td>First Name</td>
+                    <td>{{selemp.emp.firstname}}</td>
+                </tr>
+                <tr>
+                    <td>Last Name</td>
+                    <td>{{selemp.emp.lastname}}</td>
+                </tr>
+                <tr>
+                    <td>email address</td>
+                    <td>{{selemp.emp.email}}</td>
+                </tr>
+                <tr>
+                    <td>Current Experience</td>
+                    <td>{{selemp.emp.currentexperience}}</td>
+                </tr>
+                <tr>
+                    <td>Total Experience</td>
+                    <td>{{selemp.emp.totalexperience}}</td>
+                </tr>
+            </table>
+        </fieldset>
+        <fieldset>
+            <legend>Technical Skills and projects</legend>
+            <div class="callout panel"><pre>Skill set :{{selemp.emp.skillset}}</pre>
+                <fieldset ng-repeat="project in selemp.projects">
+                    <legend>{{project.projecttitle}}</legend>
+                    <table width="100%">
+                        <tr>
+                            <td>Project Description</td>
+                            <td>{{project.projectdescription}}</td>
+                        </tr>
+                        <tr>
+                            <td>Duration</td>
+                            <td>{{project.projectduration}}</td>
+                        </tr>
+                        <tr>
+                            <td>Role</td>
+                            <td>{{project.projectrole}}</td>
+                        </tr>
+                    </table>
+                </fieldset>
+            </div>
+        </fieldset>
+        <!--<div><button class="button" ng-click="restoreViewAll()"><a href="#/addApplicant"/></button>
+							<button class="button" ng-click="editEmployee(selemp.emp.contact)">Edit</button></div>-->
+</div>

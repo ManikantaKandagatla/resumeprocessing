@@ -41,7 +41,7 @@
 				<th>Contact</th>
 			</tr>
 			<tr ng-repeat="employee in Allemps">
-				<td><button ng-click="selEmp(employee)">{{employee.emp.firstname}}</button></td>
+				<td><a ui-sref="selectedApplicant({{employee.emp.firstname}})"><button ng-click="selEmp(employee)">{{employee.emp.firstname}}</button></a></td>
 				<td>{{employee.emp.skillset}}</td>
 				<td>{{employee.emp.contact}}</td>
 				<td><button class="button"
@@ -52,65 +52,9 @@
 			</tr>
 		</table>
 	</div>
-
+	<div ui-view></div>
 	<!--<div ng-show="showempResume" class="callout panel">
 						<object ng-show="content" data="{{content}}" type="application/pdf" style="width: 100%; height: 400px;"></object>
 						</div>-->
-
-	<div ng-show="ViewSelected" class="callout panel">
-		<fieldset>
-			<legend>Personal Details</legend>
-			<table width="100%">
-				<tr>
-					<td>First Name</td>
-					<td>{{selemp.emp.firstname}}</td>
-				</tr>
-				<tr>
-					<td>Last Name</td>
-					<td>{{selemp.emp.lastname}}</td>
-				</tr>
-				<tr>
-					<td>email address</td>
-					<td>{{selemp.emp.email}}</td>
-				</tr>
-				<tr>
-					<td>Current Experience</td>
-					<td>{{selemp.emp.currentexperience}}</td>
-				</tr>
-				<tr>
-					<td>Total Experience</td>
-					<td>{{selemp.emp.totalexperience}}</td>
-				</tr>
-			</table>
-		</fieldset>
-
-		<fieldset>
-			<legend>Technical Skills and projects</legend>
-			<div class="callout panel">
-				<pre>Skill set :{{selemp.emp.skillset}}</pre>
-				<fieldset ng-repeat="project in selemp.projects">
-					<legend>{{project.projecttitle}}</legend>
-					<table width="100%">
-						<tr>
-							<td>Project Description</td>
-							<td>{{project.projectdescription}}</td>
-						</tr>
-						<tr>
-							<td>Duration</td>
-							<td>{{project.projectduration}}</td>
-						</tr>
-						<tr>
-							<td>Role</td>
-							<td>{{project.projectrole}}</td>
-						</tr>
-					</table>
-				</fieldset>
-			</div>
-		</fieldset>
-
-		<!--<div><button class="button" ng-click="restoreViewAll()"><a href="#/addApplicant"/></button>
-							<button class="button" ng-click="editEmployee(selemp.emp.contact)">Edit</button></div>-->
-
-	</div>
 </div>
 </div>
