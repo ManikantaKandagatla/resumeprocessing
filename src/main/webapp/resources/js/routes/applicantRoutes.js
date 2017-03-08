@@ -13,5 +13,11 @@ angular.module('applicantApp')
 	.state('search',{
 		url :'/searchApplicant',
 		templateUrl: 'resources/templates/searchApplicant.html'	
+	})
+	
+	.state('selectedApplicant',{
+		url : '/selectedApplicant/:id',
+		templateUrl: 'resources/templates/selectedApplicant.html'
 	});
+
 });
