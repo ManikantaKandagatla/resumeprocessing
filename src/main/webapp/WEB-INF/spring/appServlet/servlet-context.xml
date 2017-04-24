@@ -49,13 +49,13 @@
 			<beans:property name="packagesToScan" value="com.mywork.resumeprocessing.model"></beans:property>
 	</beans:bean>
 	
-	<beans:bean id="empDAO" class="com.mywork.resumeprocessing.dao.EmpDAO">
+	<beans:bean id="empDAO" class="com.mywork.resumeprocessing.dao.ApplicantDAO">
 	</beans:bean>
 	
 	<beans:bean id="interviewerDAO" class="com.mywork.resumeprocessing.dao.InterviewerDAO">
 	</beans:bean>
 	
-	<beans:bean id="hibernateUtil" class="com.mywork.resumeprocessing.util.HibernateUtil">
+	<beans:bean id="hibernateUtil" class="com.mywork.resumeprocessing.util.ApplicantHibernateUtil">
 	</beans:bean>
 
 	<beans:bean id="interviewerHibernateUtil" class="com.mywork.resumeprocessing.util.InterviewerHibernateUtil">
@@ -78,7 +78,6 @@
 		
 	<tx:annotation-driven transaction-manager="transactionManager" /> 
 	<context:component-scan base-package="com.mywork.resumeprocessing.*" />
-	<annotation-driven />
 	<!-- Enables the Spring MVC @Controller programming model -->
 	<!--   -->
 	

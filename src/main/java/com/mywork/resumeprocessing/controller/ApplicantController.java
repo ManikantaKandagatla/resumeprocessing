@@ -21,22 +21,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.commons.CommonsMultipartFile;
+import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
-import com.mywork.resumeprocessing.model.CompleteEmployee;
-import com.mywork.resumeprocessing.model.EmpResume;
-import com.mywork.resumeprocessing.model.Mail;
-import com.mywork.resumeprocessing.service.EmployeeService;
+import com.mywork.resumeprocessing.model.applicant.CompleteApplicant;
+import com.mywork.resumeprocessing.model.applicant.ApplicantResume;
+import com.mywork.resumeprocessing.model.commons.Mail;
+import com.mywork.resumeprocessing.service.ApplicantService;
 import com.mywork.resumeprocessing.service.MailService;
+
 import org.apache.log4j.Logger; 
 
 @RestController
+@EnableWebMvc
 @Configuration
 @ComponentScan("com.mywork.resumeprocessing.service")
-public class EmployeeController {
+public class ApplicantController {
 	
-	private static final Logger log = Logger.getLogger(EmployeeController.class);
+	private static final Logger log = Logger.getLogger(ApplicantController.class);
 	@Autowired
-	private EmployeeService employeeService;
+	private ApplicantService applicantService;
 	
 	@Autowired 
 	private MailService mailService;
@@ -51,14 +54,14 @@ public class EmployeeController {
 		log.info("JSON String:"+stremployee);
 		ObjectMapper mapper = new ObjectMapper();
 		mapper.configure(DeserializationConfig.Feature.FAIL_ON_UNKNOWN_PROPERTIES, false);
-		CompleteEmployee employee = mapper.readValue(stremployee, CompleteEmployee.class);
+		CompleteApplicant employee = mapper.readValue(stremployee, CompleteApplicant.class);
 
 		System.out.println(resume.getSize());
-		EmpResume resumeobj = new EmpResume();
+		ApplicantResume resumeobj = new ApplicantResume();
 		resumeobj.setEmpprofile(employee.getEmp());
 		resumeobj.setEmpresume(resume.getBytes());
-		employeeService.deleteEmployeeByid(employee.getEmp().getContact());
-		success = employeeService.createEmployee(employee,resumeobj);
+		applicantService.deleteEmployeeByid(employee.getEmp().getContact());
+		success = applicantService.createEmployee(employee,resumeobj);
 		if(success)
 		{
 			mail = new Mail();
@@ -77,10 +80,10 @@ public class EmployeeController {
 	
 	
 	@RequestMapping(value= "/retrieveAllApplicants", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")
-	public @ResponseBody List<CompleteEmployee> getAllEmps()
+	public @ResponseBody List<CompleteApplicant> getAllEmps()
 	{
 		log.info("Retrieving all employees");
-		List<CompleteEmployee> allEmps = employeeService.getAllEmps();
+		List<CompleteApplicant> allEmps = applicantService.getAllEmps();
 		log.info("Retrieved " +allEmps.size()+" employees");
 		return allEmps;
 	}
@@ -90,38 +93,38 @@ public class EmployeeController {
 	public void deleteEmployee(@RequestBody String id)
 	{
 		log.info("Retrieving all employees");
-		employeeService.deleteEmployeeByid(id);
+		applicantService.deleteEmployeeByid(id);
 	}
 	
 	@RequestMapping(value= "/searchByName/{firstname}", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")
-	public @ResponseBody List<CompleteEmployee> searchEmployeeByName(@PathVariable String firstname)
+	public @ResponseBody List<CompleteApplicant> searchEmployeeByName(@PathVariable String firstname)
 	{
-		return employeeService.searchEmployeeByName(firstname);
+		return applicantService.searchEmployeeByName(firstname);
 	}
 	
 	@RequestMapping(value= "/searchByContact/{contact}", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")	
-	public @ResponseBody List<CompleteEmployee> searchEmployeeByContact(@PathVariable  String contact)
+	public @ResponseBody List<CompleteApplicant> searchEmployeeByContact(@PathVariable  String contact)
 	{
-		return employeeService.searchEmployeeByContact(contact);
+		return applicantService.searchEmployeeByContact(contact);
 	}
 	
 	@RequestMapping(value= "/searchBySkillset/{skill}", method =RequestMethod.GET,produces = "application/json",headers="Accept=*/*")	
-	public @ResponseBody List<CompleteEmployee> searchEmployeeBySkillset(@PathVariable String skill)
+	public @ResponseBody List<CompleteApplicant> searchEmployeeBySkillset(@PathVariable String skill)
 	{
 		skill = skill.replace('*', '%');
-		return employeeService.searchEmployeeBySkillset(skill);
+		return applicantService.searchEmployeeBySkillset(skill);
 	}
 	
 	@RequestMapping(value= "/editEmployee", method =RequestMethod.POST)	
-	public @ResponseBody CompleteEmployee getEmployee(@RequestBody String id)
+	public @ResponseBody CompleteApplicant getEmployee(@RequestBody String id)
 	{
-		return employeeService.getEmployee(id);
+		return applicantService.getEmployee(id);
 	}
 	
 	@RequestMapping(value="/getApplicantResume/{id}",method = RequestMethod.GET,produces = "application/pdf")
 	public @ResponseBody byte[]  getApplicantResume(@PathVariable String id,HttpServletResponse response)
 	{
-		EmpResume resume = employeeService.getEmployeeResume(id);
+		ApplicantResume resume = applicantService.getEmployeeResume(id);
 		byte[] content = resume.getEmpresume();
 		System.out.println(content.length);
 		response.setHeader("Content-Disposition", "inline; filename=Empresume.pdf");

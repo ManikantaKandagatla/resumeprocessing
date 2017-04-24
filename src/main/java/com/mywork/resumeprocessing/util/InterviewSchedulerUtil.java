@@ -11,7 +11,8 @@ import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 
-import com.mywork.resumeprocessing.model.ScheduledInterview;
+import com.mywork.resumeprocessing.model.scheduleinterview.CallApplicantToInterview;
+import com.mywork.resumeprocessing.model.scheduleinterview.ScheduledInterview;
 /**
  * @author ManiKanta Kandagatla
  *
@@ -31,6 +32,24 @@ public class InterviewSchedulerUtil {
 			{
 				session.persist(scheduledInterview);
 			}
+		}
+		catch(Exception e)
+		{
+			e.printStackTrace();
+		}
+	}
+	
+	
+	public void callApplicantsToInterviews(List<CallApplicantToInterview> callApplicantsToInterviews)
+	{
+		try
+		{
+			Session session = sessionFactory.getCurrentSession();
+			for(CallApplicantToInterview callApplicantToInterview: callApplicantsToInterviews)
+			{
+				session.persist(callApplicantToInterview);
+			}
+			
 		}
 		catch(Exception e)
 		{

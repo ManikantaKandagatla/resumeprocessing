@@ -7,7 +7,7 @@ package com.mywork.resumeprocessing.service;
 
 import org.springframework.stereotype.Service;
 
-import com.mywork.resumeprocessing.model.Mail;
+import com.mywork.resumeprocessing.model.commons.Mail;
 
 import javax.mail.PasswordAuthentication;
 import java.util.Properties;

@@ -9,62 +9,62 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mywork.resumeprocessing.dao.EmpDAO;
-import com.mywork.resumeprocessing.model.CompleteEmployee;
-import com.mywork.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.dao.ApplicantDAO;
+import com.mywork.resumeprocessing.model.applicant.CompleteApplicant;
+import com.mywork.resumeprocessing.model.applicant.ApplicantResume;
 
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 @Service
 @Transactional
-public class EmployeeService {
+public class ApplicantService {
 
-	private static final Logger log = LoggerFactory.getLogger(EmployeeService.class);
+	private static final Logger log = LoggerFactory.getLogger(ApplicantService.class);
 	@Autowired
-	private EmpDAO empDAO;
+	private ApplicantDAO applicantDAO;
 	// private RestTemplate restTemplate = null;
 	
-	public boolean createEmployee(CompleteEmployee employee,EmpResume resumeobj)
+	public boolean createEmployee(CompleteApplicant employee,ApplicantResume resumeobj)
 	{
 		log.info("Adding Employee..!!");
-		return empDAO.createEmployee(employee.getEmp(),employee.getProjects(),resumeobj);
+		return applicantDAO.createEmployee(employee.getEmp(),employee.getProjects(),resumeobj);
 	}
 	
-	public List<CompleteEmployee> getAllEmps()
+	public List<CompleteApplicant> getAllEmps()
 	{
 		log.info("Retrieving Employees..!!");
-		return empDAO.getAllemp();
+		return applicantDAO.getAllemp();
 	}
 	
 	
 	
 	public void deleteEmployeeByid(String id) {
 		log.info("Deleting Employee with id: "+id+"..!!");
-        empDAO.deleteEmployeeByid(id);
+        applicantDAO.deleteEmployeeByid(id);
     }
  
-	public List<CompleteEmployee> searchEmployeeByName(String firstname) {
+	public List<CompleteApplicant> searchEmployeeByName(String firstname) {
 		log.info("Search Employee by Name: "+ firstname);
-        return empDAO.searchEmployeeByName(firstname);
+        return applicantDAO.searchEmployeeByName(firstname);
     }
-	public List<CompleteEmployee> searchEmployeeByContact(String contact) {
+	public List<CompleteApplicant> searchEmployeeByContact(String contact) {
 		log.info("Search Employee by contact: "+contact);
-		return  empDAO.searchEmployeeByContact(contact);
+		return  applicantDAO.searchEmployeeByContact(contact);
     }
-	public List<CompleteEmployee> searchEmployeeBySkillset(String skillset) {
+	public List<CompleteApplicant> searchEmployeeBySkillset(String skillset) {
 		log.info("Search Employee by skillset: "+skillset);
-        return empDAO.searchEmployeeBySkillset(skillset);
+        return applicantDAO.searchEmployeeBySkillset(skillset);
     }
  
-	public CompleteEmployee getEmployee(String id){
+	public CompleteApplicant getEmployee(String id){
 		log.info("Fetching Applicants complete details..!!");
-		return empDAO.getEmployee(id);
+		return applicantDAO.getEmployee(id);
 	}
 	
-	public EmpResume getEmployeeResume(String id){
+	public ApplicantResume getEmployeeResume(String id){
 		log.info("Fetching resume of Applicant..!!");
-		return empDAO.getEmployeeResume(id);
+		return applicantDAO.getEmployeeResume(id);
 	}
 	
 	/*public void storeResume(EmpResume resume) {
