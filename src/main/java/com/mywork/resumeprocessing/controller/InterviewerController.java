@@ -6,7 +6,7 @@ package com.mywork.resumeprocessing.controller;
 import java.io.IOException;
 import java.util.List;
 
-import com.mywork.resumeprocessing.model.Interviewer;
+import com.mywork.resumeprocessing.model.interviewer.Interviewer;
 import com.mywork.resumeprocessing.service.InterviewerService;
 import org.apache.log4j.Logger; 
 import org.codehaus.jackson.map.DeserializationConfig;

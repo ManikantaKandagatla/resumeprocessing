@@ -20,21 +20,21 @@ import org.springframework.transaction.annotation.Transactional;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
-import com.mywork.resumeprocessing.model.EmpProfile;
-import com.mywork.resumeprocessing.model.EmpProjects;
-import com.mywork.resumeprocessing.model.EmpResume;
+import com.mywork.resumeprocessing.model.applicant.ApplicantProfile;
+import com.mywork.resumeprocessing.model.applicant.ApplicantProjects;
+import com.mywork.resumeprocessing.model.applicant.ApplicantResume;
 
 
 @Repository
 @Transactional
-public class HibernateUtil {
+public class ApplicantHibernateUtil {
 	
-	private static final Logger log = LoggerFactory.getLogger(HibernateUtil.class);
+	private static final Logger log = LoggerFactory.getLogger(ApplicantHibernateUtil.class);
 	@Autowired
 	private SessionFactory sessionFactory;
-	public boolean create(Object entity,List<EmpProjects> projects,EmpResume resumeobj) 
+	public boolean create(Object entity,List<ApplicantProjects> projects,ApplicantResume resumeobj) 
 	{
-		EmpProfile emp = (EmpProfile)entity;
+		ApplicantProfile emp = (ApplicantProfile)entity;
 		Session session = sessionFactory.getCurrentSession();
 		try
 		{
@@ -60,20 +60,20 @@ public class HibernateUtil {
 	
 	
 	 @SuppressWarnings("unchecked")
-	 public List<EmpProfile> fetchAll() 
+	 public List<ApplicantProfile> fetchAll() 
 	 {
 		 log.info("Retrieving all Applicants..!!");
-		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
-		 List<EmpProfile> empProfiles = null;
+		 Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ApplicantProfile.class);
+		 List<ApplicantProfile> applicantProfiles = null;
 		 try
 		 {
-			 empProfiles = (List<EmpProfile>)criteria.list();;
+			 applicantProfiles = (List<ApplicantProfile>)criteria.list();;
 		 }
 		 catch(Exception e)
 		 {
 			 e.printStackTrace();
 		 }
-		 return empProfiles;
+		 return applicantProfiles;
 	 }
 	 
 	 public void deleteEmployeeByid(String id) 
@@ -90,57 +90,57 @@ public class HibernateUtil {
 	 }
 	 	
 	 @SuppressWarnings("unchecked")
-	 public List<EmpProfile> search(String property,String value)
+	 public List<ApplicantProfile> search(String property,String value)
 	 {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ApplicantProfile.class);
 		criteria.add(Restrictions.like(property, value, MatchMode.ANYWHERE));
-		List<EmpProfile> empProfiles = null;
+		List<ApplicantProfile> applicantProfiles = null;
 		try
 		{
-			empProfiles = (List<EmpProfile>)criteria.list();;
+			applicantProfiles = (List<ApplicantProfile>)criteria.list();;
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return  empProfiles;
+		return  applicantProfiles;
 	}
 	 
-	 public EmpProfile getEmployee(String contact)
+	 public ApplicantProfile getEmployee(String contact)
 	 {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProfile.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ApplicantProfile.class);
 		criteria.add(Restrictions.eq("contact", contact));
-		EmpProfile empProfile = null;
+		ApplicantProfile applicantProfile = null;
 		try
 		{
-			empProfile = (EmpProfile) criteria.uniqueResult();
+			applicantProfile = (ApplicantProfile) criteria.uniqueResult();
 		}
 		catch(Exception e)
 		{
 			e.printStackTrace();
 		}
-		return  empProfile;
+		return  applicantProfile;
 	 }
 	 
 	 
-	 public EmpResume getEmployeeResume(String contact)
+	 public ApplicantResume getEmployeeResume(String contact)
 	 {
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpResume.class,"empresume");
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ApplicantResume.class,"empresume");
 		criteria.createAlias("empresume.empprofile","empprofile");
 		criteria.add(Restrictions.eq("empprofile.contact", contact));
-		return  (EmpResume) criteria.uniqueResult();
+		return  (ApplicantResume) criteria.uniqueResult();
 	 }
 
 	 @SuppressWarnings("unchecked")
-	public List<EmpProjects> fetchprojects(String contact) 
+	public List<ApplicantProjects> fetchprojects(String contact) 
 	{
 		// TODO Auto-generated method stub
-		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(EmpProjects.class);
+		Criteria criteria = sessionFactory.getCurrentSession().createCriteria(ApplicantProjects.class);
 		criteria.add(Restrictions.eq("contact", contact));
-		List<EmpProjects> listEmpProjects = null;
+		List<ApplicantProjects> listEmpProjects = null;
 		try
 		{
-			listEmpProjects = (List<EmpProjects>) criteria.list();
+			listEmpProjects = (List<ApplicantProjects>) criteria.list();
 		}
 		catch(Exception e)
 		{

@@ -7,27 +7,27 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mywork.resumeprocessing.model.CompleteEmployee;
-import com.mywork.resumeprocessing.model.EmpProfile;
-import com.mywork.resumeprocessing.model.EmpProjects;
-import com.mywork.resumeprocessing.model.EmpResume;
-import com.mywork.resumeprocessing.util.HibernateUtil;
+import com.mywork.resumeprocessing.model.applicant.CompleteApplicant;
+import com.mywork.resumeprocessing.model.applicant.ApplicantProfile;
+import com.mywork.resumeprocessing.model.applicant.ApplicantProjects;
+import com.mywork.resumeprocessing.model.applicant.ApplicantResume;
+import com.mywork.resumeprocessing.util.ApplicantHibernateUtil;
 
 
 @Repository
 @Transactional
-public class EmpDAO  {
+public class ApplicantDAO  {
 	
 	 @Autowired
-	 private HibernateUtil hibernateUtil;
+	 private ApplicantHibernateUtil applicantHibernateUtil;
 	 
-	public boolean createEmployee(EmpProfile employee,List<EmpProjects> projs,EmpResume resumeobj) {
-		 return hibernateUtil.create(employee,projs,resumeobj);
+	public boolean createEmployee(ApplicantProfile employee,List<ApplicantProjects> projs,ApplicantResume resumeobj) {
+		 return applicantHibernateUtil.create(employee,projs,resumeobj);
 	}
 	 
-	public List<CompleteEmployee> getAllemp()
+	public List<CompleteApplicant> getAllemp()
 	{
-		List<EmpProfile> profiles = hibernateUtil.fetchAll();
+		List<ApplicantProfile> profiles = applicantHibernateUtil.fetchAll();
 		return returnEmployees(profiles);
 	}
 
@@ -39,44 +39,44 @@ public class EmpDAO  {
 	
 	public void deleteEmployeeByid(String id)
 	{
-		hibernateUtil.deleteEmployeeByid(id);
+		applicantHibernateUtil.deleteEmployeeByid(id);
 	}
 	
-	public List<CompleteEmployee> searchEmployeeByName(String firstname)
+	public List<CompleteApplicant> searchEmployeeByName(String firstname)
 	{
-		List<EmpProfile> profiles = hibernateUtil.search("firstname",firstname);
+		List<ApplicantProfile> profiles = applicantHibernateUtil.search("firstname",firstname);
 		return returnEmployees(profiles);
 	}
 	
-	public List<CompleteEmployee> searchEmployeeByContact(String contact)
+	public List<CompleteApplicant> searchEmployeeByContact(String contact)
 	{
-		List<EmpProfile> profiles = hibernateUtil.search("contact",contact);
+		List<ApplicantProfile> profiles = applicantHibernateUtil.search("contact",contact);
 		return returnEmployees(profiles);
 	}
 	
-	public List<CompleteEmployee> searchEmployeeBySkillset(String skillset)
+	public List<CompleteApplicant> searchEmployeeBySkillset(String skillset)
 	{
-		List<EmpProfile> profiles = hibernateUtil.search("skillset",skillset);
+		List<ApplicantProfile> profiles = applicantHibernateUtil.search("skillset",skillset);
 		return returnEmployees(profiles);
 		
 	}
 	
-	public CompleteEmployee getEmployee(String id)
+	public CompleteApplicant getEmployee(String id)
 	{
-		EmpProfile emp = hibernateUtil.getEmployee(id);
-		List<EmpProjects> projects= hibernateUtil.fetchprojects(emp.getContact());
-		CompleteEmployee employee = new CompleteEmployee();
+		ApplicantProfile emp = applicantHibernateUtil.getEmployee(id);
+		List<ApplicantProjects> projects= applicantHibernateUtil.fetchprojects(emp.getContact());
+		CompleteApplicant employee = new CompleteApplicant();
 		employee.setEmp(emp);
 		employee.setProjects(projects);
 		return employee;
 	}
 	
-	public List<CompleteEmployee> returnEmployees(List<EmpProfile> profiles)
+	public List<CompleteApplicant> returnEmployees(List<ApplicantProfile> profiles)
 	{
-		List<CompleteEmployee> employees = new ArrayList<CompleteEmployee>();
+		List<CompleteApplicant> employees = new ArrayList<CompleteApplicant>();
 		for(int i = 0;i<profiles.size();i++){
-			List<EmpProjects> projects= hibernateUtil.fetchprojects(profiles.get(i).getContact());
-			CompleteEmployee employee = new CompleteEmployee();
+			List<ApplicantProjects> projects= applicantHibernateUtil.fetchprojects(profiles.get(i).getContact());
+			CompleteApplicant employee = new CompleteApplicant();
 			employee.setEmp(profiles.get(i));
 			employee.setProjects(projects);
 			employees.add(employee);
@@ -84,7 +84,7 @@ public class EmpDAO  {
 		return employees;
 	}
 
-	public EmpResume getEmployeeResume(String id) {
-		return hibernateUtil.getEmployeeResume(id);
+	public ApplicantResume getEmployeeResume(String id) {
+		return applicantHibernateUtil.getEmployeeResume(id);
 	}
 }
