@@ -34,7 +34,7 @@
 <center><h3>Employee Interview App</h3></center>
 </div>
 <div class="large-12 columns" ng-controller="mainController as ctrl" ng-init="initEmp()">
-  <div class="medium-3 columns">
+  <div class="small-12 medium-12 large-3 columns">
     <ul class="tabs vertical" id="example-vert-tabs" data-tabs>
       <li class="tabs-title is-active"><a ui-sref="new" aria-selected="true">New Details</a></li>
       <li class="tabs-title"><a ui-sref="search">View Employees</a></li>
@@ -44,7 +44,7 @@
       <li class="tabs-title"><a href="#panel4v">Function  6</a></li>-->
     </ul>
     </div>
-    <div class="medium-9 columns">
+    <div class="small-12 medium-12 large-9 columns">
     <div class="tabs-content vertical" data-tabs-content="example-vert-tabs">
       <div class="tabs-panel is-active" id="panel1v">
       <div ui-view></div>
