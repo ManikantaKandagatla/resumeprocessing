@@ -9,7 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.mywork.resumeprocessing.model.Interviewer;
+import com.mywork.resumeprocessing.model.interviewer.Interviewer;
 import com.mywork.resumeprocessing.util.InterviewerHibernateUtil;
 
 /**
